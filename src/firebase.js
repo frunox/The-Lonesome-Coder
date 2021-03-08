@@ -1,6 +1,9 @@
+// import base firebase app
 import firebase from "firebase/app"
+// import authentication module
 import "firebase/auth"
 
+// these are the dev environment env variables.  Will change for prod
 const app = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
@@ -11,5 +14,6 @@ const app = firebase.initializeApp({
   appId: process.env.REACT_APP_FIREBASE_APP_ID
 })
 
+// make the auth functionality available
 export const auth = app.auth()
 export default app
