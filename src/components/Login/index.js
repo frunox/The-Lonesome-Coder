@@ -4,14 +4,14 @@ import { Confirm } from 'semantic-ui-react'
 import { useAuth } from "../../contexts/AuthContext"
 import { useModal } from "../../contexts/ModalContext"
 import { useHistory, Link } from "react-router-dom";
-import './Signup.css'
+import './Login.css'
 
 
 Modal.setAppElement(document.getElementById('root'))
 
 // console.log('in LoginForm')
 
-const Signup = () => {
+const Login = () => {
   // const displaynameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
@@ -23,7 +23,7 @@ const Signup = () => {
   const history = useHistory()
   const [state, setState] = useState({ open: false })
 
-  const { signupOpen, openSignupModal } = useModal()
+  const { loginOpen, openLoginModal } = useModal()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -38,7 +38,7 @@ const Signup = () => {
     try {
       setError("")
       setLoading(true)
-      openSignupModal(false)
+      openLoginModal(false)
       await signup(emailRef.current.value, passwordRef.current.value)
       history.push("/")
     } catch {
@@ -55,7 +55,7 @@ const Signup = () => {
   return (
     <div className='wrapper'>
       <div className='form-wrapper'>
-        <Modal isOpen={signupOpen} onRequestClose={() => openSignupModal(false)}
+        <Modal isOpen={loginOpen} onRequestClose={() => openLoginModal(false)}
           // shouldCloseOnOverlayClick={false}
           style={{
             overlay: {
@@ -138,4 +138,4 @@ const Signup = () => {
   );
 }
 
-export default Signup;
+export default Login;

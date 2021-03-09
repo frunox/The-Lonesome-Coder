@@ -4,12 +4,17 @@ import { useModal } from "../../contexts/ModalContext"
 import './HomeNav.css'
 
 const HomeNav = props => {
-  const { signupModalOpen, openSignupModal } = useModal()
-  console.log('signupModalOpen', signupModalOpen, openSignupModal)
+  const { openSignupModal, openLoginModal } = useModal()
+  // console.log('signupModalOpen', signupOpen)
 
   const toggleSignupModal = () => {
     console.log('in toggleSignupModal')
     openSignupModal(true)
+  }
+
+  const toggleLoginModal = () => {
+    console.log('in toggleLoginModal')
+    openLoginModal(true)
   }
 
   return (
@@ -22,8 +27,8 @@ const HomeNav = props => {
         <div className='spacer' />
         <div className='toolbar_nav-items'>
           <ul>
-            <li><a href='/login'>Log In</a></li>
-            <li><a href="/signup" onClick={toggleSignupModal}>Sign Up</a></li>
+            <li><button onClick={toggleLoginModal}>Log In</button></li>
+            <li><button onClick={toggleSignupModal}>Sign Up</button></li>
           </ul>
         </div>
       </nav>

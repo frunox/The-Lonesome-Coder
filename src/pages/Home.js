@@ -4,7 +4,7 @@ import HomeNav from '../components/HomeNav'
 import SideDrawer from '../components/SideDrawer/SideDrawer'
 import Backdrop from '../components/Backdrop/Backdrop'
 import Background from '../components/Background'
-// import Signup from '../components/Signup'
+import Signup from '../components/Signup'
 // import drawerToggleButton from "../components/SideDrawer/ToggleButton";
 // import SetupContext from '../contexts/SetupContext'
 
@@ -38,7 +38,7 @@ function Home() {
       <SideDrawer show={state.sideDrawerOpen} />
       {backdrop}
       <Background />
-      {/* <Signup /> */}
+      <Signup />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import { AuthProvider } from "./contexts/AuthContext"
 import { ModalProvider } from "./contexts/ModalContext"
 import Home from "./pages/Home";
+import Login from './components/Login'
 import Signup from './components/Signup';
 // import LogoutModal from "./components/LogoutForm/LogoutModal";
 import './App.css';
@@ -15,8 +16,7 @@ function App() {
           <ModalProvider>
             <Switch>
               <Route exact path="/" component={Home} />
-              {/* <Route exact path="/login" component={LoginModal} /> */}
-              {/* <Route exact path="/logout" component={LogoutModal} /> */}
+              <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
             </Switch>
           </ModalProvider>
