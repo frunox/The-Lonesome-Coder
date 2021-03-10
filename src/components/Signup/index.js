@@ -1,15 +1,8 @@
 import React, { useRef, useState } from "react";
-import Modal from 'react-modal';
 import { Confirm } from 'semantic-ui-react'
 import { useAuth } from "../../contexts/AuthContext"
-import { useModal } from "../../contexts/ModalContext"
 import { useHistory, Link } from "react-router-dom";
 import './Signup.css'
-
-
-Modal.setAppElement(document.getElementById('root'))
-
-// console.log('in LoginForm')
 
 const Signup = () => {
   // const displaynameRef = useRef()
@@ -23,7 +16,6 @@ const Signup = () => {
   const history = useHistory()
   const [state, setState] = useState({ open: false })
 
-  const { signupOpen, openSignupModal, swapSigninLoginModals } = useModal()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -38,7 +30,6 @@ const Signup = () => {
     try {
       setError("")
       setLoading(true)
-      openSignupModal(false)
       await signup(emailRef.current.value, passwordRef.current.value)
       history.push("/")
     } catch {
@@ -52,30 +43,10 @@ const Signup = () => {
     setState({ open: false })
   }
 
-  const swapModals = () => {
-    swapSigninLoginModals()
-  }
-
   return (
-    <div className='wrapper'>
-      <div className='form-wrapper'>
-        <Modal isOpen={signupOpen} onRequestClose={() => openSignupModal(false)}
-          // shouldCloseOnOverlayClick={false}
-          style={{
-            overlay: {
-              backgroundColor: 'rgba(0, 0, 255, 0.5)',
-              zIndex: '100'
-            },
-            content: {
-              borderRadius: '10px',
-              top: '90px',
-              border: '1px solid black',
-              width: '400px',
-              margin: '0 auto',
-              height: '390px',
-            }
-          }}
-        >
+    <div className='signup-background'>
+      <div className='wrapper'>
+        <div className='form-wrapper'>
           <h1>Sign Up</h1>
           {error &&
             <Confirm
@@ -133,12 +104,11 @@ const Signup = () => {
             </div>
           </form>
           <div className="signup-login">
-            Already have an account? <Link onClick={swapModals}>Log In</Link>
+            Already have an account? <Link to="/login">Log In</Link>
           </div>
-        </Modal>
+        </div>
       </div>
     </div>
-
   );
 }
 
