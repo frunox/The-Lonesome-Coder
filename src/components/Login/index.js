@@ -15,34 +15,27 @@ const Login = () => {
   // const displaynameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
-  const passwordConfirmRef = useRef()
 
-  const { signup } = useAuth()
+  const { login } = useAuth()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
   const [state, setState] = useState({ open: false })
 
-  const { loginOpen, openLoginModal } = useModal()
+  const { loginOpen, openLoginModal, swapLoginSigninModals } = useModal()
 
   async function handleSubmit(e) {
     e.preventDefault()
-
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      setError("Passwords do not match")
-      setState({ open: true })
-      return
-    }
 
     // the loading state is set to disable the button so only 1 account is created
     try {
       setError("")
       setLoading(true)
       openLoginModal(false)
-      await signup(emailRef.current.value, passwordRef.current.value)
+      await login(emailRef.current.value, passwordRef.current.value)
       history.push("/")
     } catch {
-      setError("Failed to create an account")
+      setError("Failed to log in")
     }
 
     setLoading(false)
@@ -50,6 +43,10 @@ const Login = () => {
 
   const closeConfirm = () => {
     setState({ open: false })
+  }
+
+  const openSignUp = () => {
+    swapLoginSigninModals()
   }
 
   return (
@@ -68,11 +65,11 @@ const Login = () => {
               border: '1px solid black',
               width: '400px',
               margin: '0 auto',
-              height: '390px',
+              height: '330px',
             }
           }}
         >
-          <h1>Sign Up</h1>
+          <h1>Log In</h1>
           {error &&
             <Confirm
               open={state.open}
@@ -82,16 +79,6 @@ const Login = () => {
             />
           }
           <form onSubmit={handleSubmit}>
-            {/* <div className="display-name">
-              <label htmlFor="displayName">Display Name</label>
-              <input
-                ref={displaynameRef}
-                placeholder="display name"
-                type="text"
-                name="displayName"
-                required
-              />
-            </div> */}
             <div className="email">
               <label htmlFor="email">Email</label>
               <input
@@ -113,23 +100,12 @@ const Login = () => {
                 pattern="(?=.*\d)(?=.*[!@_#$%^&*-])(?=.*[a-z])(?=.*[A-Z]).{6,}"
               />
             </div>
-            <div className="password-confirm">
-              <label htmlFor="password">Confirm Password</label>
-              <input
-                ref={passwordConfirmRef}
-                placeholder="Password"
-                type="password"
-                name="password"
-                required
-                pattern="(?=.*\d)(?=.*[!@_#$%^&*-])(?=.*[a-z])(?=.*[A-Z]).{6,}"
-              />
-            </div>
             <div className="createAccount">
-              <button disabled={loading} type="submit">Sign Up</button>
+              <button disabled={loading} type="submit">Log In</button>
             </div>
           </form>
           <div className="signup-login">
-            Already have an account? <Link to="/login">Log In</Link>
+            Already have an account? <Link onClick={openSignUp} >Sign Up</Link>
           </div>
         </Modal>
       </div>

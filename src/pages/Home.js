@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 // import HomeNav from '../components/HomeNav'
 import HomeNav from '../components/HomeNav'
+import HomePage from '../components/HomePage'
 import SideDrawer from '../components/SideDrawer/SideDrawer'
 import Backdrop from '../components/Backdrop/Backdrop'
 import Background from '../components/Background'
 import Signup from '../components/Signup'
+import Login from '../components/Login'
 // import drawerToggleButton from "../components/SideDrawer/ToggleButton";
-// import SetupContext from '../contexts/SetupContext'
 
 function Home() {
   const [state, setState] = useState({
@@ -38,7 +39,9 @@ function Home() {
       <SideDrawer show={state.sideDrawerOpen} />
       {backdrop}
       <Background />
+      <HomePage />
       <Signup />
+      <Login />
     </div>
   );
 }

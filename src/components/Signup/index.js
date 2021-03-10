@@ -23,7 +23,7 @@ const Signup = () => {
   const history = useHistory()
   const [state, setState] = useState({ open: false })
 
-  const { signupOpen, openSignupModal } = useModal()
+  const { signupOpen, openSignupModal, swapSigninLoginModals } = useModal()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -50,6 +50,10 @@ const Signup = () => {
 
   const closeConfirm = () => {
     setState({ open: false })
+  }
+
+  const swapModals = () => {
+    swapSigninLoginModals()
   }
 
   return (
@@ -129,7 +133,7 @@ const Signup = () => {
             </div>
           </form>
           <div className="signup-login">
-            Already have an account? <Link to="/login">Log In</Link>
+            Already have an account? <Link onClick={swapModals}>Log In</Link>
           </div>
         </Modal>
       </div>
