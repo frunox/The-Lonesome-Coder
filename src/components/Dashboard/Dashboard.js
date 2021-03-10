@@ -37,14 +37,14 @@ export default function Dashboard() {
       <div className='form-wrapper'>
 
         <h1>Profile</h1>
-        {/* {error &&
+        {error &&
           <Confirm
             open={state.open}
             onConfirm={closeConfirm}
             content={error}
             size='tiny'
           />
-        } */}
+        }
         <strong>Email:</strong> {currentUser.email}
 
         <div className="createAccount">
