@@ -3,6 +3,7 @@ import { Confirm } from 'semantic-ui-react'
 import { useAuth } from "../../contexts/AuthContext"
 import { useHistory } from "react-router-dom"
 import { Link } from 'react-router-dom'
+import './Dashboard.css'
 
 export default function Dashboard() {
   const [error, setError] = useState("")
@@ -34,7 +35,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className='wrapper dashboard'>
+    <div className='wrapper background'>
       <div className='form-wrapper'>
 
         <h1>Profile</h1>
@@ -46,9 +47,9 @@ export default function Dashboard() {
             size='tiny'
           />
         }
-        <span><strong>Email:</strong> {currentUser.email}</span>
+        <span className='dashboard-email'><strong>Email:</strong> {currentUser.email}</span>
         <button className='createAccount'><Link to="/update-profile">Update Profile</Link></button>
-        <div>
+        <div className="signup-login">
           <button onClick={handleLogout}>Log Out</button>
         </div>
       </div>

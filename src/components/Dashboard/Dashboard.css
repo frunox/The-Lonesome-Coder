@@ -12,3 +12,8 @@ button {
   background-color: blue;
   color: #fff;
 }
+
+.dashboard-email {
+  font-size: 1.4rem;
+  margin-bottom: 0.2rem;
+}

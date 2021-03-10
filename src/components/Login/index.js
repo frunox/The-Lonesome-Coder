@@ -1,15 +1,8 @@
 import React, { useRef, useState } from "react";
-import Modal from 'react-modal';
 import { Confirm } from 'semantic-ui-react'
 import { useAuth } from "../../contexts/AuthContext"
-import { useModal } from "../../contexts/ModalContext"
 import { useHistory, Link } from "react-router-dom";
 import './Login.css'
-
-
-Modal.setAppElement(document.getElementById('root'))
-
-// console.log('in LoginForm')
 
 const Login = () => {
   // const displaynameRef = useRef()
@@ -22,8 +15,6 @@ const Login = () => {
   const history = useHistory()
   const [state, setState] = useState({ open: false })
 
-  const { loginOpen, openLoginModal, swapLoginSigninModals } = useModal()
-
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -31,7 +22,6 @@ const Login = () => {
     try {
       setError("")
       setLoading(true)
-      openLoginModal(false)
       await login(emailRef.current.value, passwordRef.current.value)
       history.push("/")
     } catch {
@@ -45,30 +35,10 @@ const Login = () => {
     setState({ open: false })
   }
 
-  const openSignUp = () => {
-    swapLoginSigninModals()
-  }
-
   return (
-    <div className='wrapper'>
-      <div className='form-wrapper'>
-        <Modal isOpen={loginOpen} onRequestClose={() => openLoginModal(false)}
-          // shouldCloseOnOverlayClick={false}
-          style={{
-            overlay: {
-              backgroundColor: 'rgba(0, 0, 255, 0.5)',
-              zIndex: '100'
-            },
-            content: {
-              borderRadius: '10px',
-              top: '90px',
-              border: '1px solid black',
-              width: '400px',
-              margin: '0 auto',
-              height: '330px',
-            }
-          }}
-        >
+    <div className='login-background'>
+      <div className='wrapper'>
+        <div className='form-wrapper'>
           <h1>Log In</h1>
           {error &&
             <Confirm
@@ -105,12 +75,11 @@ const Login = () => {
             </div>
           </form>
           <div className="signup-login">
-            Already have an account? <Link onClick={openSignUp} >Sign Up</Link>
+            Already have an account? <Link to="/signup">Sign Up</Link>
           </div>
-        </Modal>
+        </div>
       </div>
     </div>
-
   );
 }
 

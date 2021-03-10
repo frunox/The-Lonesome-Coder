@@ -7,7 +7,6 @@ import Home from "./pages/Home";
 import Login from './components/Login'
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard/Dashboard'
-// import LogoutModal from "./components/LogoutForm/LogoutModal";
 import './App.css';
 
 function App() {
