@@ -32,11 +32,31 @@ export function ModalProvider({ children }) {
     })
   }
 
+  function swapLoginSigninModals() {
+    // console.log('ModalContext openLoginModal', setting, state)
+    return setState({
+      ...state,
+      signupModalOpen: true,
+      loginModalOpen: false
+    })
+  }
+
+  function swapSigninLoginModals() {
+    // console.log('ModalContext openLoginModal', setting, state)
+    return setState({
+      ...state,
+      signupModalOpen: false,
+      loginModalOpen: true
+    })
+  }
+
   const value = {
     signupOpen,
     loginOpen,
     openSignupModal,
-    openLoginModal
+    openLoginModal,
+    swapLoginSigninModals,
+    swapSigninLoginModals
   }
   console.log('ModalContext loginOpen', loginOpen)
   return (
