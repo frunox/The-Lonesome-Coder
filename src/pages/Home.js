@@ -5,6 +5,7 @@ import HomePage from '../components/HomePage'
 import SideDrawer from '../components/SideDrawer/SideDrawer'
 import Backdrop from '../components/Backdrop/Backdrop'
 import Background from '../components/Background'
+// import Dashboard from '../components/Dashboard'
 import Signup from '../components/Signup'
 import Login from '../components/Login'
 // import drawerToggleButton from "../components/SideDrawer/ToggleButton";
@@ -40,6 +41,7 @@ function Home() {
       {backdrop}
       <Background />
       <HomePage />
+      {/* <Dashboard /> */}
       <Signup />
       <Login />
     </div>

@@ -1,11 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import DrawerToggleButton from '../SideDrawer/ToggleButton'
+import { useAuth } from "../../contexts/AuthContext"
 import { useModal } from "../../contexts/ModalContext"
 import './HomeNav.css'
 
 const HomeNav = props => {
   const { openSignupModal, openLoginModal } = useModal()
   // console.log('signupModalOpen', signupOpen)
+
+  const { currentUser } = useAuth()
 
   const toggleSignupModal = () => {
     console.log('in toggleSignupModal')
@@ -27,8 +31,13 @@ const HomeNav = props => {
         <div className='spacer' />
         <div className='toolbar_nav-items'>
           <ul>
-            <li><button onClick={toggleLoginModal}>Log In</button></li>
-            <li><button onClick={toggleSignupModal}>Sign Up</button></li>
+            {currentUser && <li><Link to="/profile">Profile</Link></li>}
+            {!currentUser &&
+              <>
+                <li><button onClick={toggleLoginModal}>Log In</button></li>
+                <li><button onClick={toggleSignupModal}>Sign Up</button></li>
+              </>
+            }
           </ul>
         </div>
       </nav>
