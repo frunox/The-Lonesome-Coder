@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Confirm } from 'semantic-ui-react'
 import { useAuth } from "../../contexts/AuthContext"
 import { useHistory } from "react-router-dom"
+import { Link } from 'react-router-dom'
 
 export default function Dashboard() {
   const [error, setError] = useState("")
@@ -33,22 +34,22 @@ export default function Dashboard() {
   }
 
   return (
-    <div className='wrapper'>
+    <div className='wrapper dashboard'>
       <div className='form-wrapper'>
 
         <h1>Profile</h1>
-        {/* {error &&
+        {error &&
           <Confirm
             open={state.open}
             onConfirm={closeConfirm}
             content={error}
             size='tiny'
           />
-        } */}
-        <strong>Email:</strong> {currentUser.email}
-
-        <div className="createAccount">
-          <button type="submit" onClick={handleLogout}>Log Out</button>
+        }
+        <span><strong>Email:</strong> {currentUser.email}</span>
+        <button className='createAccount'><Link to="/update-profile">Update Profile</Link></button>
+        <div>
+          <button onClick={handleLogout}>Log Out</button>
         </div>
       </div>
     </div>
