@@ -8,6 +8,7 @@ import Login from './components/Login'
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard/Dashboard'
 import ForgotPassword from './components/ForgotPassword/ForgotPassword'
+import UpdateProfile from './components/UpdateProfile/UpdateProfile'
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={Home} />
               <PrivateRoute path="/profile" component={Dashboard} />
+              <PrivateRoute path="/update-profile" component={UpdateProfile} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
               <Route path="/forgot-password" component={ForgotPassword} />
