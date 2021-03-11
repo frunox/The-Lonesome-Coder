@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Login from './components/Login'
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard/Dashboard'
+import ForgotPassword from './components/ForgotPassword/ForgotPassword'
 import './App.css';
 
 function App() {
@@ -17,9 +18,10 @@ function App() {
           <ModalProvider>
             <Switch>
               <Route exact path="/" component={Home} />
+              <PrivateRoute path="/profile" component={Dashboard} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/signup" component={Signup} />
-              <PrivateRoute path="/profile" component={Dashboard} />
+              <Route path="/forgot-password" component={ForgotPassword} />
             </Switch>
           </ModalProvider>
         </AuthProvider>

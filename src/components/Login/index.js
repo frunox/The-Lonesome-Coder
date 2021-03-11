@@ -39,41 +39,46 @@ const Login = () => {
     <div className='login-background'>
       <div className='wrapper'>
         <div className='form-wrapper'>
-          <h1>Log In</h1>
-          {error &&
-            <Confirm
-              open={state.open}
-              onConfirm={closeConfirm}
-              content={error}
-              size='tiny'
-            />
-          }
-          <form onSubmit={handleSubmit}>
-            <div className="email">
-              <label htmlFor="email">Email</label>
-              <input
-                ref={emailRef}
-                placeholder="Email"
-                type="email"
-                name="email"
-                required
+          <div className='login-form-outline'>
+            <h1>Log In</h1>
+            {error &&
+              <Confirm
+                open={state.open}
+                onConfirm={closeConfirm}
+                content={error}
+                size='tiny'
               />
-            </div>
-            <div className="password">
-              <label htmlFor="password">Password</label>
-              <input
-                ref={passwordRef}
-                placeholder="Password"
-                type="password"
-                name="password"
-                required
-                pattern="(?=.*\d)(?=.*[!@_#$%^&*-])(?=.*[a-z])(?=.*[A-Z]).{6,}"
-              />
-            </div>
-            <div className="createAccount">
-              <button disabled={loading} type="submit">Log In</button>
-            </div>
-          </form>
+            }
+            <form className='form' onSubmit={handleSubmit}>
+              <div className="email">
+                <label htmlFor="email">Email</label>
+                <input
+                  ref={emailRef}
+                  placeholder="Email"
+                  type="email"
+                  name="email"
+                  required
+                />
+              </div>
+              <div className="password">
+                <label htmlFor="password">Password</label>
+                <input
+                  ref={passwordRef}
+                  placeholder="Password"
+                  type="password"
+                  name="password"
+                  required
+                  pattern="(?=.*\d)(?=.*[!@_#$%^&*-])(?=.*[a-z])(?=.*[A-Z]).{6,}"
+                />
+              </div>
+              <div className="createAccount">
+                <button disabled={loading} type="submit">Log In</button>
+              </div>
+              <div className="signup-login">
+                <Link to="/forgot-password">Forgot Password?</Link>
+              </div>
+            </form>
+          </div>
           <div className="signup-login">
             Already have an account? <Link to="/signup">Sign Up</Link>
           </div>

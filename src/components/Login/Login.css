@@ -24,6 +24,13 @@
   background-color: #ffffff;
 }
 
+.login-form-outline {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 8px;
+  margin-bottom: 6px;
+}
+
 form {
   width: 100%;
 }
