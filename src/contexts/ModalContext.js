@@ -9,85 +9,36 @@ export function useModal() {
 
 export function ModalProvider({ children }) {
   const [state, setState] = useState({
-    signupModalOpen: false,
-    loginModalOpen: false
+    errorModalOpen: false,
   })
 
-  let signupOpen = state.signupModalOpen
-  let loginOpen = state.loginModalOpen
+  const [errorMessage, setErrorMessage] = useState("")
+  let errorOpen = state.errorModalOpen
 
-  function openSignupModal(setting) {
-    console.log('ModalContext openSignupModal', setting)
+  function openErrorModal(setting) {
+    console.log('ModalContext openErrorModal', setting)
     return setState({
       ...state,
-      signupModalOpen: setting
+      errorModalOpen: setting
     })
   }
 
-  function openLoginModal(setting) {
-    console.log('ModalContext openLoginModal', setting, state)
-    return setState({
-      ...state,
-      loginModalOpen: setting
-    })
-  }
-
-  function swapLoginSigninModals() {
-    // console.log('ModalContext openLoginModal', setting, state)
-    return setState({
-      ...state,
-      signupModalOpen: true,
-      loginModalOpen: false
-    })
-  }
-
-  function swapSigninLoginModals() {
-    // console.log('ModalContext openLoginModal', setting, state)
-    return setState({
-      ...state,
-      signupModalOpen: false,
-      loginModalOpen: true
-    })
+  function errorMessageHandler(message) {
+    console.log('In errorMessageHandler', message)
+    return setErrorMessage(message)
   }
 
   const value = {
-    signupOpen,
-    loginOpen,
-    openSignupModal,
-    openLoginModal,
-    swapLoginSigninModals,
-    swapSigninLoginModals
+    errorOpen,
+    errorMessage,
+    openErrorModal,
+    errorMessageHandler
   }
-  console.log('ModalContext loginOpen', loginOpen)
+  console.log('ModalContext errorOpen', errorOpen)
+
   return (
     <ModalContext.Provider value={value}>
       {children}
     </ModalContext.Provider>
   )
 }
-
-// export const ModalProvider = (props) => {
-//   const [state, setState] = useState({
-//     signupModalOpen: false
-//   })
-
-//   return (
-//     <ModalContext.Provider value={
-//       {
-//         state: state,
-
-//         openSignupModal: (value) => {
-//           // console.log('setupCtx updateDevUpdated', value)
-//           setState({
-//             ...state,
-//             devUpdated: value
-//           })
-//         }
-//       }
-//     }>
-//       {props.children}
-//     </ModalContext.Provider>
-//   )
-// }
-
-

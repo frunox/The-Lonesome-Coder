@@ -1,7 +1,8 @@
 import React, { useRef, useState } from "react";
-import { Confirm } from 'semantic-ui-react'
 import { useAuth } from "../../contexts/AuthContext"
+import { useModal } from "../../contexts/ModalContext"
 import { useHistory, Link } from "react-router-dom";
+import ErrorModal from '../ErrorModal/ErrorModal'
 import './Login.css'
 
 const Login = () => {
@@ -10,10 +11,10 @@ const Login = () => {
   const passwordRef = useRef()
 
   const { login } = useAuth()
+  const { errorOpen, openErrorModal, errorMessageHandler } = useModal()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
-  const [state, setState] = useState({ open: false })
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -25,30 +26,23 @@ const Login = () => {
       await login(emailRef.current.value, passwordRef.current.value)
       history.push("/")
     } catch {
-      setError("Failed to log in")
+      let message = "Invalid email or password"
+      setError(message)
+      errorMessageHandler(message)
+      openErrorModal(true)
+      console.log('LOGIN error', error, 'message', message)
     }
 
     setLoading(false)
-  }
-
-  const closeConfirm = () => {
-    setState({ open: false })
   }
 
   return (
     <div className='login-background'>
       <div className='wrapper'>
         <div className='form-wrapper'>
+          {errorOpen && <ErrorModal />}
           <div className='login-form-outline'>
             <h1>Log In</h1>
-            {error &&
-              <Confirm
-                open={state.open}
-                onConfirm={closeConfirm}
-                content={error}
-                size='tiny'
-              />
-            }
             <form className='form' onSubmit={handleSubmit}>
               <div className="email">
                 <label htmlFor="email">Email</label>
@@ -82,6 +76,7 @@ const Login = () => {
           <div className="signup-login">
             Already have an account? <Link to="/signup">Sign Up</Link>
           </div>
+
         </div>
       </div>
     </div>
