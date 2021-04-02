@@ -9,9 +9,6 @@ function Background() {
       <main>
         <section className='glass'></section>
       </main>
-      <div className='circle1'></div>
-
-      <img className='raven' src="https://i.ibb.co/rxhB7xS/Raven2.png" alt="Raven2" border="0"></img>
     </div>
   );
 }
