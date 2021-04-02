@@ -1,7 +1,20 @@
-.home-message {
+.home-content {
   z-index: 10;
   position: relative;
   top: 100px;
+}
+
+.headline {
+  font-size: 22px;
+  text-transform: uppercase;
+  font-weight: lighter;
+  color: black;
+  display: flex;
+  justify-content: start;
+  margin-left: 5%;
+}
+
+.home-message {
   display: flex;
   justify-content: center;
 }
