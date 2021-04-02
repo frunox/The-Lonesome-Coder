@@ -8,8 +8,10 @@ const HomeNav = props => {
   const { currentUser } = useAuth()
 
   return (
-    <header className='homenav-header'>
-      <div className='homenav-logo'><a href='/'>LOGO</a></div>
+    <header className='navbar-header'>
+      <div className="navbar-logo-background"><img className='navbar-logo' src="../../assets/soaring-bird.png" alt='logo'></img></div>
+      {/* <div className="navbar-bird"></div> */}
+      <div className='navbar-title'><a href='/'>TITLE</a></div>
       <input type='checkbox' id="navbar-toggle" className="navbar-toggle"></input>
       <nav className='navbar-nav'>
         <ul className='navbar-ul'>
