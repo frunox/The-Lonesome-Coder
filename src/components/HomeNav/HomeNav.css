@@ -1,7 +1,7 @@
 /* navigation styles start here */
 
 .navbar-header {
-  background: black;
+  background: linear-gradient(to right, #5495d1, #145eb3);
   height: 55px;
   position: fixed;
   z-index: 999;
@@ -10,10 +10,45 @@
   align-items: center;
 }
 
-.user-name {
-  color: white;
+.navbar-logo-background {
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 0, 0.9) 60%,
+    rgba(255, 255, 0, 0)
+  );
+  height: 55px;
+  width: 55px;
+  display: flex;
+  align-items: center;
+  filter: blur(3px);
+  overflow: clip;
+  z-index: -1;
+}
+
+.navbar-logo {
+  height: 40px;
+  width: auto;
+  margin-left: -40px;
+  margin-top: 6px;
+}
+
+.navbar-title {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar-title a {
+  color: black;
+  font-size: 1.3em;
+  margin-left: 1em;
   margin-bottom: 0;
-  font-style: italic;
+  font-weight: bold;
+}
+
+.navbar-title a:hover {
+  color: darkslategray;
 }
 
 /* .homenav-logo {
@@ -73,7 +108,7 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: linear-gradient(to right, #5495d1, #145eb3);
   width: 100%;
   transform: scale(1, 0);
   transform-origin: top;
@@ -104,7 +139,7 @@
 }
 
 .navbar-nav a:hover {
-  color: blue;
+  color: lightgray;
 }
 
 .navbar-toggle:checked ~ nav {
@@ -122,47 +157,36 @@
   }
 
   .navbar-header {
-    display: grid;
-    grid-template-columns: 50px 250px auto 440px;
+    max-height: 55px;
   }
 
   .navbar-nav {
-    all: unset;
-    grid-column: 4 / 5;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-right: 1.5em;
-  }
-
-  .user-name {
-    grid-column: 2/3;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 55px;
     display: flex;
     align-items: center;
+    justify-content: end;
+    transform: none;
+    background: none;
   }
-
-  /* .homenav-logo {
-    grid-column: 2 / 3;
-    margin-left: 1em;
-  } */
 
   .navbar-nav a {
     opacity: 1;
   }
 
   .navbar-nav a:hover {
-    color: blue;
+    color: lightgray;
   }
 
   .navbar-nav ul {
+    height: 100%;
     display: flex;
-    justify-content: flex-end;
     align-items: center;
-    list-style: none;
   }
-}
-
-.navbar-nav li {
-  margin: 0;
-  padding-left: 1em;
+  .navbar-nav li {
+    margin: 0;
+    padding-left: 1em;
+  }
 }
