@@ -2,7 +2,7 @@ import React from "react";
 // import HomeNav from '../components/HomeNav'
 import HomeNav from '../components/HomeNav'
 import HomePage from '../components/HomePage'
-import Background from '../components/Background'
+// import Background from '../components/Background'
 // import Dashboard from '../components/Dashboard'
 // import Signup from '../components/Signup'
 // import Login from '../components/Login'
@@ -15,7 +15,7 @@ function Home() {
   return (
     <div style={{ height: '100%' }}>
       <HomeNav />
-      <Background />
+      {/* <Background /> */}
       <HomePage />
       {/* <Dashboard /> */}
       {/* <Signup />

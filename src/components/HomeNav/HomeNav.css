@@ -1,7 +1,8 @@
 /* navigation styles start here */
 
 .navbar-header {
-  background: linear-gradient(to right, #5495d1, #145eb3);
+  /* background: linear-gradient(to right, #5495d1, #145eb3); */
+  border-bottom: 2px solid blue;
   height: 55px;
   position: fixed;
   z-index: 999;
@@ -14,8 +15,8 @@
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(255, 255, 0, 0.9) 60%,
-    rgba(255, 255, 0, 0)
+    rgba(255, 208, 0, 0.9) 70%,
+    rgba(255, 0, 0, 0)
   );
   height: 55px;
   width: 55px;
@@ -42,7 +43,7 @@
 .navbar-title a {
   color: black;
   font-size: 1.3em;
-  margin-left: 1em;
+  margin-right: 1em;
   margin-bottom: 0;
   font-weight: bold;
 }
@@ -81,7 +82,7 @@
 .navbar-toggle-label span::before,
 .navbar-toggle-label span::after {
   display: block;
-  background: white;
+  background: black;
   height: 2px;
   width: 2em;
   border-radius: 2px;
@@ -108,7 +109,8 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background: linear-gradient(to right, #5495d1, #145eb3);
+  background: linear-gradient(to bottom, blue, white);
+  opacity: 70%;
   width: 100%;
   transform: scale(1, 0);
   transform-origin: top;
@@ -116,6 +118,7 @@
 }
 
 .navbar-nav ul {
+  color: black;
   margin-right: 1em;
   padding: 0.3em 0;
   list-style: none;
@@ -123,13 +126,14 @@
 }
 
 .navbar-nav li {
-  margin-bottom: 8px;
-  margin-left: 1em;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  /* margin-left: 1em; */
   padding-bottom: 0.2em;
 }
 
 .navbar-nav a {
-  color: white;
+  color: black;
   margin-bottom: 1.5em;
   text-decoration: none;
   font-size: 1.2em;
