@@ -1,21 +1,25 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState } from "react";
+import { useAuth } from "../../../contexts/AuthContext"
+import { useModal } from "../../../contexts/ModalContext"
 import { useHistory, Link } from "react-router-dom";
-import { useModal } from "../../contexts/ModalContext"
-import { useAuth } from "../../contexts/AuthContext"
-import ErrorModal from '../ErrorModal/ErrorModal'
+import ErrorModal from '../../ErrorModal/ErrorModal'
+import './Signup.css'
 
-export default function UpdateProfile() {
+const Signup = () => {
+  // const displaynameRef = useRef()
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
-  const { currentUser, updatePassword, updateEmail } = useAuth()
+
+  const { signup } = useAuth()
   const { openErrorModal, errorMessageHandler } = useModal()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const history = useHistory()
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
+
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       let message = "Passwords do not match"
       errorMessageHandler(message)
@@ -23,33 +27,20 @@ export default function UpdateProfile() {
       return setError(message)
     }
 
-    const promises = []
-    setLoading(true)
-    setError("")
-
-    console.log('Emails', emailRef.current.value, currentUser.email)
-    if (emailRef.current.value && emailRef.current.value !== currentUser.email) {
-      console.log('Updating email')
-      promises.push(updateEmail(emailRef.current.value))
+    // the loading state is set to disable the button so only 1 account is created
+    try {
+      setError("")
+      setLoading(true)
+      await signup(emailRef.current.value, passwordRef.current.value)
+      history.push("/")
+    } catch {
+      let message = "Failed to create an account"
+      setError(message)
+      errorMessageHandler(message)
+      openErrorModal(true)
     }
-    if (passwordRef.current.value) {
-      promises.push(updatePassword(passwordRef.current.value))
-    }
 
-    Promise.all(promises)
-      .then(() => {
-        history.push("/")
-      })
-      .catch((err) => {
-        let message = "Failed to update account"
-        console.log(err.message)
-        setError(message)
-        errorMessageHandler(message)
-        openErrorModal(true)
-      })
-      .finally(() => {
-        setLoading(false)
-      })
+    setLoading(false)
   }
 
   return (
@@ -58,7 +49,7 @@ export default function UpdateProfile() {
         <div className='form-wrapper'>
           {error && <ErrorModal />}
           <div className='login-form-outline'>
-            <h1>Update Profile</h1>
+            <h1>Sign Up</h1>
             <form onSubmit={handleSubmit}>
               {/* <div className="display-name">
               <label htmlFor="displayName">Display Name</label>
@@ -74,18 +65,20 @@ export default function UpdateProfile() {
                 <label htmlFor="email">Email</label>
                 <input
                   ref={emailRef}
-                  placeholder={currentUser.email}
+                  placeholder="Email"
                   type="email"
                   name="email"
+                  required
                 />
               </div>
               <div className="password">
                 <label htmlFor="password">Password</label>
                 <input
                   ref={passwordRef}
-                  placeholder="leave blank to keep the same"
+                  placeholder="Password"
                   type="password"
                   name="password"
+                  required
                   pattern="(?=.*\d)(?=.*[!@_#$%^&*-])(?=.*[a-z])(?=.*[A-Z]).{6,}"
                 />
               </div>
@@ -93,22 +86,25 @@ export default function UpdateProfile() {
                 <label htmlFor="password">Confirm Password</label>
                 <input
                   ref={passwordConfirmRef}
-                  placeholder="leave blank to keep the same"
+                  placeholder="Password"
                   type="password"
                   name="password"
+                  required
                   pattern="(?=.*\d)(?=.*[!@_#$%^&*-])(?=.*[a-z])(?=.*[A-Z]).{6,}"
                 />
               </div>
               <div className="createAccount">
-                <button disabled={loading} type="submit">Update</button>
+                <button disabled={loading} type="submit">Sign Up</button>
               </div>
             </form>
           </div>
           <div className="signup-login">
-            <Link to="/profile">Cancel</Link>
+            Already have an account? <Link to="/login">Log In</Link>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
+
+export default Signup;
