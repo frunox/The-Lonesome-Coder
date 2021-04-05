@@ -22,7 +22,7 @@ const getPosts = async () => {
         const { metadata, content } = parseMD(contents)
         // console.log('*******************************')
         // console.log('METADATA', metadata)
-        console.log('CONTENT', content, typeof content)
+        // console.log('CONTENT', content, typeof content)
         post = {
           id: i + 1,
           title: metadata.title ? metadata.title : "No title",
@@ -32,14 +32,17 @@ const getPosts = async () => {
           keywords: metadata.keywords ? metadata.keywords : " ",
           content: content ? content : "No content"
         }
-        console.log('POST', post)
+        // console.log('POST', post)
         postlist.push(post)
+        if (i === files.length - 1) {
+          // console.log(postlist)
+          let data = JSON.stringify(postlist)
+          fs.writeFileSync("src/posts.json", data)
+        }
       })
     })
   })
-  // setTimeout(() => {
-  //   console.log(postlist)
-  // }, 500)
+
 }
 
 getPosts()
