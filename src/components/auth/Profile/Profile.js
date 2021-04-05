@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import { Confirm } from 'semantic-ui-react'
-import { useAuth } from "../../contexts/AuthContext"
+import { useAuth } from "../../../contexts/AuthContext"
 import { useHistory, Link } from "react-router-dom"
-import './Dashboard.css'
+import './Profile.css'
 
-export default function Dashboard() {
+export default function Profile() {
   const [error, setError] = useState("")
   const { currentUser, logout } = useAuth()
   const history = useHistory()

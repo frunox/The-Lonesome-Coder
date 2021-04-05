@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react";
-import { useAuth } from "../../contexts/AuthContext"
-import { useModal } from "../../contexts/ModalContext"
+import { useAuth } from "../../../contexts/AuthContext"
+import { useModal } from "../../../contexts/ModalContext"
 import { useHistory, Link } from "react-router-dom";
-import ErrorModal from '../ErrorModal/ErrorModal'
+import ErrorModal from '../../ErrorModal/ErrorModal'
 import './Login.css'
 
 const Login = () => {

@@ -1,13 +1,13 @@
 import React from "react";
 // import HomeNav from '../components/HomeNav'
 import HomeNav from '../components/HomeNav'
-import Dashboard from '../components/Dashboard/Dashboard'
-import Background from '../components/Background'
+import Profile from '../components/auth/Profile/Profile'
+// import Background from '../components/Background'
 // import Dashboard from '../components/Dashboard'
 // import Signup from '../components/Signup'
 // import Login from '../components/Login'
 
-function Profile() {
+function ProfilePage() {
 
   // const setupCtx = useContext(SetupContext) ?
   // function to toggle the open/close state of the side drawer (passed to toggle button)
@@ -15,8 +15,8 @@ function Profile() {
   return (
     <div style={{ height: '100%' }}>
       <HomeNav />
-      <Background />
-      <Dashboard />
+      {/* <Background /> */}
+      <Profile />
       {/* <Dashboard /> */}
       {/* <Signup />
       <Login />
@@ -25,4 +25,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default ProfilePage;
