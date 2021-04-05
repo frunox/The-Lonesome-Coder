@@ -32,13 +32,14 @@ const getPosts = async () => {
           keywords: metadata.keywords ? metadata.keywords : " ",
           content: content ? content : "No content"
         }
+        console.log('POST', post)
         postlist.push(post)
       })
     })
   })
-  setTimeout(() => {
-    console.log(postlist)
-  }, 500)
+  // setTimeout(() => {
+  //   console.log(postlist)
+  // }, 500)
 }
 
 getPosts()
