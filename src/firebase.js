@@ -2,6 +2,7 @@
 import firebase from "firebase/app"
 // import authentication module
 import "firebase/auth"
+import "firebase/firestore"
 
 // these are the dev environment env variables.  Will change for prod
 const app = firebase.initializeApp({
@@ -16,4 +17,5 @@ const app = firebase.initializeApp({
 
 // make the auth functionality available
 export const auth = app.auth()
+export const firestore = app.firestore()
 export default app
