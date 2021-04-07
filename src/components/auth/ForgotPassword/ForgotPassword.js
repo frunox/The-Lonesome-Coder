@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import ErrorModal from '../../ErrorModal/ErrorModal'
+import HomeNav from '../../HomeNav'
 import { useAuth } from "../../../contexts/AuthContext"
 import { useModal } from '../../../contexts/ModalContext'
 import { Link } from "react-router-dom";
@@ -39,7 +40,8 @@ export default function ForgotPassword() {
 
   return (
     <div>
-      <div className='login-background'>
+      <div>
+        <HomeNav />
         <div className='wrapper'>
           <div className='form-wrapper'>
             <div className='login-form-outline'>

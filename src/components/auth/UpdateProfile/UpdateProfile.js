@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react"
 import { useHistory, Link } from "react-router-dom";
 import { useModal } from "../../../contexts/ModalContext"
 import { useAuth } from "../../../contexts/AuthContext"
+import HomeNav from '../../HomeNav'
 import ErrorModal from '../../ErrorModal/ErrorModal'
 
 export default function UpdateProfile() {
@@ -53,7 +54,8 @@ export default function UpdateProfile() {
   }
 
   return (
-    <div className='signup-background'>
+    <div>
+      <HomeNav />
       <div className='wrapper'>
         <div className='form-wrapper'>
           {error && <ErrorModal />}

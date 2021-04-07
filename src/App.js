@@ -4,8 +4,8 @@ import { AuthProvider } from "./contexts/AuthContext"
 import { ModalProvider } from "./contexts/ModalContext"
 import PrivateRoute from "./components/auth/PrivateRoute"
 import Home from "./pages/Home";
-import Login from './components/auth/Login'
-import Signup from './components/auth/Signup';
+import LoginPage from './pages/LoginPage'
+import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage'
 import ForgotPassword from './components/auth/ForgotPassword/ForgotPassword'
 import UpdateProfile from './components/auth/UpdateProfile/UpdateProfile'
@@ -21,8 +21,8 @@ function App() {
               <Route exact path="/" component={Home} />
               <PrivateRoute path="/profile" component={ProfilePage} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route exact path="/signup" component={SignupPage} />
               <Route path="/forgot-password" component={ForgotPassword} />
             </Switch>
           </ModalProvider>
