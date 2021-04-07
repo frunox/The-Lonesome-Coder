@@ -44,7 +44,7 @@ const Signup = () => {
   }
 
   return (
-    <div className='signup-background'>
+    <div>
       <div className='wrapper'>
         <div className='form-wrapper'>
           {error && <ErrorModal />}

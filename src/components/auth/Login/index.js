@@ -37,7 +37,7 @@ const Login = () => {
   }
 
   return (
-    <div className='login-background'>
+    <div>
       <div className='wrapper'>
         <div className='form-wrapper'>
           {errorOpen && <ErrorModal />}

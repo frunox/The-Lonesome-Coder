@@ -1,0 +1,17 @@
+.postlist {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+.post-card {
+  text-align: left;
+  margin-bottom: 1em;
+  padding: 2px;
+  border: 1px solid white;
+}
+
+.post-card:hover {
+  border-color: darkgray;
+  box-shadow: 4px 4px 4px 4px darkgray, 4px 4px 4px 4px white;
+}
