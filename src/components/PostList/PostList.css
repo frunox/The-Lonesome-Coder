@@ -1,9 +1,10 @@
 .postlist {
-  width: 50%;
+  width: 70%;
   margin: auto;
   text-align: center;
 }
 
+.post-card-fixed,
 .post-card {
   text-align: left;
   margin-bottom: 1em;

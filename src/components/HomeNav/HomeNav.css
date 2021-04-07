@@ -1,7 +1,7 @@
 /* navigation styles start here */
 
 .navbar-header {
-  /* background: linear-gradient(to right, #5495d1, #145eb3); */
+  background: white;
   border-bottom: 2px solid blue;
   height: 55px;
   position: fixed;
@@ -49,7 +49,7 @@
 }
 
 .navbar-title a:hover {
-  color: darkslategray;
+  color: rgb(255, 208, 0);
 }
 
 /* .homenav-logo {
@@ -109,8 +109,8 @@
   position: absolute;
   top: 100%;
   right: 0;
-  background: linear-gradient(to bottom, blue, white);
-  opacity: 70%;
+  background: blue;
+  opacity: 85%;
   width: 100%;
   transform: scale(1, 0);
   transform-origin: top;
@@ -118,7 +118,6 @@
 }
 
 .navbar-nav ul {
-  color: black;
   margin-right: 1em;
   padding: 0.3em 0;
   list-style: none;
@@ -133,7 +132,7 @@
 }
 
 .navbar-nav a {
-  color: black;
+  color: white;
   margin-bottom: 1.5em;
   text-decoration: none;
   font-size: 1.2em;
@@ -171,12 +170,13 @@
     height: 55px;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: flex-end;
     transform: none;
     background: none;
   }
 
   .navbar-nav a {
+    color: black;
     opacity: 1;
   }
 
