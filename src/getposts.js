@@ -30,9 +30,10 @@ const getPosts = async () => {
           author: metadata.author ? metadata.author : "No author",
           summary: metadata.summary ? metadata.summary : "No summary",
           keywords: metadata.keywords ? metadata.keywords : " ",
+          filename: metadata.filename ? metadata.filename : "",
           content: content ? content : "No content"
         }
-        // console.log('POST', post)
+        console.log('POST', post)
         postlist.push(post)
         if (i === files.length - 1) {
           // console.log(postlist)

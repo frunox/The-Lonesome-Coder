@@ -4,6 +4,7 @@ date: April 5, 2021
 author: John
 summary:
 keywords:
+filename: 01_welcome.md
 ---
 
 Welcome to the **_Lonesome Coder_** blog. My name is John, and I'm trying to transition from a previous career path to becoming a web developer. I have a MERN full-stack boot camp certificate, so I've learned some basics. Where do I go from here, and how do I get there? That's the subject of this blog.

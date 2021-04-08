@@ -4,6 +4,7 @@ date: April 5, 2021
 author: John
 summary: This is just a placeholder for future posts...
 keywords:
+filename: 02_dummypost.md
 ---
 
 This is just a placeholder for future posts for testing purposes.
