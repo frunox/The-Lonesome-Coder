@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import Markdown from 'markdown-to-jsx'
+import content from '../../post2.md'
 import { firestore } from '../../firebase'
 import './PostList.css'
 
@@ -6,11 +8,15 @@ import './PostList.css'
 
 function PostList() {
   const [posts, setPosts] = useState([])
+  const [markdown, setMarkdown] = useState("")
   // console.log('Post List: ', postlist)
 
 
   useEffect(() => {
     const postsRef = firestore.collection('posts')
+    fetch(content)
+      .then((res) => res.text())
+      .then((text) => setMarkdown(text))
     postsRef.get()
       .then((snapshot) => {
         // snapshot.docs.forEach((doc) => console.log(doc.id, doc.data()))
@@ -18,7 +24,7 @@ function PostList() {
           ...doc.data()
         }))
         posts.sort((a, b) => b.postId - a.postId)
-        // console.log('posts: ', posts)
+        // console.log('posts: ', posts) 
         setPosts(posts)
       })
   }, [])
@@ -36,7 +42,10 @@ function PostList() {
               <h2>{post.title}</h2>
               <small>Published on {post.date}</small>
               <hr></hr>
-              <p className='post-card-summary'>{post.summary}</p>
+              <Markdown className='post-card-summary'>{post.summary}</Markdown>
+              <div>
+                <Markdown>{markdown}</Markdown>
+              </div>
             </div>
           )
         })
