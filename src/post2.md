@@ -1,8 +1,3 @@
----
-Comments
-Comments
----
-
 # Post Title
 
 Welcome to the **_My Blog_** blog.

@@ -22,7 +22,7 @@ const getPosts = async () => {
         const { metadata, content } = parseMD(contents)
         // console.log('*******************************')
         // console.log('METADATA', metadata)
-        // console.log('CONTENT', content, typeof content)
+        console.log('CONTENT', content, typeof content)
         post = {
           id: i + 1,
           title: metadata.title ? metadata.title : "No title",
@@ -33,7 +33,7 @@ const getPosts = async () => {
           filename: metadata.filename ? metadata.filename : "",
           content: content ? content : "No content"
         }
-        console.log('POST', post)
+        // console.log('POST', post)
         postlist.push(post)
         if (i === files.length - 1) {
           // console.log(postlist)

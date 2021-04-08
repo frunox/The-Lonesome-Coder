@@ -9,6 +9,7 @@ import SignupPage from './pages/SignupPage';
 import ProfilePage from './pages/ProfilePage'
 import ForgotPassword from './components/auth/ForgotPassword/ForgotPassword'
 import UpdateProfile from './components/auth/UpdateProfile/UpdateProfile'
+import AdminPage from './pages/AdminPage'
 import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <PrivateRoute path="/profile" component={ProfilePage} />
               <PrivateRoute path="/update-profile" component={UpdateProfile} />
+              <PrivateRoute path='/admin' component={AdminPage} />
               <Route exact path="/login" component={LoginPage} />
               <Route exact path="/signup" component={SignupPage} />
               <Route path="/forgot-password" component={ForgotPassword} />
