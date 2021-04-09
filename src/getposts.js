@@ -22,7 +22,7 @@ const getPosts = async () => {
         const { metadata, content } = parseMD(contents)
         // console.log('*******************************')
         // console.log('METADATA', metadata)
-        // console.log('CONTENT', content, typeof content)
+        console.log('CONTENT', content, typeof content)
         post = {
           id: i + 1,
           title: metadata.title ? metadata.title : "No title",
@@ -30,6 +30,7 @@ const getPosts = async () => {
           author: metadata.author ? metadata.author : "No author",
           summary: metadata.summary ? metadata.summary : "No summary",
           keywords: metadata.keywords ? metadata.keywords : " ",
+          filename: metadata.filename ? metadata.filename : "",
           content: content ? content : "No content"
         }
         // console.log('POST', post)

@@ -1,0 +1,11 @@
+.admin-content {
+  z-index: 10;
+  position: relative;
+  top: 60px;
+  width: 80%;
+  margin: auto;
+}
+
+.admin-content h2 {
+  text-align: center;
+}

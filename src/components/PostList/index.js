@@ -1,26 +1,36 @@
 import React, { useState, useEffect } from 'react'
+// import Markdown from 'markdown-to-jsx'
+import ReactMarkdown from 'react-markdown'
+// import content from '../../post2.md'
 import { firestore } from '../../firebase'
 import './PostList.css'
 
-// import postlist from "../../posts.json"
-
 function PostList() {
   const [posts, setPosts] = useState([])
+  // const [markdown, setMarkdown] = useState("")
   // console.log('Post List: ', postlist)
 
 
   useEffect(() => {
-    const postsRef = firestore.collection('posts')
+    // let blogContent = []
+    const postsRef = firestore.collection('metadata')
+    // fetch(content)
+    //   .then((res) => res.text())
+    //   .then((text) => setMarkdown(text))
     postsRef.get()
       .then((snapshot) => {
-        // snapshot.docs.forEach((doc) => console.log(doc.id, doc.data()))
         const posts = snapshot.docs.map((doc) => ({
           ...doc.data()
         }))
         posts.sort((a, b) => b.postId - a.postId)
-        // console.log('posts: ', posts)
+        if (posts.length > 3) {
+          posts.splice(3)
+        }
+        console.log('posts: ', posts)
         setPosts(posts)
+        // setMarkdown(blogContent)
       })
+    // console.log(markdown)
   }, [])
 
   // let welcomePost = posts[posts.length - 1]
@@ -36,7 +46,7 @@ function PostList() {
               <h2>{post.title}</h2>
               <small>Published on {post.date}</small>
               <hr></hr>
-              <p className='post-card-summary'>{post.summary}</p>
+              <ReactMarkdown className='post-card-summary'>{post.summary}</ReactMarkdown>
             </div>
           )
         })

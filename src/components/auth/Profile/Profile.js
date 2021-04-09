@@ -10,7 +10,7 @@ export default function Profile() {
   const history = useHistory()
 
   if (currentUser) {
-    console.log('Dashboard currentUser', currentUser.email)
+    console.log('Dashboard currentUser', currentUser)
   } else {
     console.log('No current user')
     history.push("/")
