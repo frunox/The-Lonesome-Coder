@@ -32,42 +32,18 @@ function Admin() {
   }
 
   const parseHandler = async () => {
-    // console.log("FILE: ", file.name)
-    // console.log('markdown file', typeof markdownFile, markdownFile)
-
-    // usee parse-md to capture the metadata in the 'metadata' variable
+    // use parse-md to capture the metadata in the 'metadata' variable and content in the 'content' variable
     const { metadata, content } = parseMD(markdownFile)
     setMData(metadata)
     setPostContent(content)
-    // setFile(content)
-    // console.log('metadata: ', metadata)
 
     // remove metadata from .md file
     // split the post file into an array of lines
     const linesArray = markdownFile.split('\n')
     linesArray.splice(0, 10)
-    // console.log(linesArray)
     let contentString = linesArray.join("\n")
-    // console.log(contentString)
     setPost(contentString)
-    // function to get the indices of the lines with "---"
-    // const getIndices = (acc, line, i) => {
-    //   if (/^---/.test(line)) {
-    //     acc.push(i)
-    //   }
-    //   return acc
-    // }
-    // use the function in reduce() to get an array with the indices
-    // const metadataIndices = linesArray.reduce(getIndices, [])
-    // console.log(metadataIndices)
-    // console.log('content', typeof content, content)
-
   }
-
-  // const contentFileSelectedHandler = async (event) => {
-  //   // console.log(event.target.files[0])
-  //   setFile(event.target.files[0])
-  // }
 
   const fileUploadHandler = async (event) => {
     let bucketName = 'markdown'
@@ -115,7 +91,6 @@ function Admin() {
           <Markdown>{postContent}</Markdown>
         </div>
       </div>
-
     </>
   )
 }

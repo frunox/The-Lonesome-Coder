@@ -47,6 +47,7 @@ function PostList() {
               <small>Published on {post.date}</small>
               <hr></hr>
               <ReactMarkdown className='post-card-summary'>{post.summary}</ReactMarkdown>
+              <small className="click">Click to read more...</small>
             </div>
           )
         })
