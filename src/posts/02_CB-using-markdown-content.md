@@ -1,12 +1,3 @@
----
-title: Dummy Post
-date: April 5, 2021
-author: John
-summary: This is just a **placeholder** for _future_ posts...
-keywords:
-filename: 02_dummypost.md
----
-
 ### Some Content
 
 This is just a placeholder for future posts for testing purposes.

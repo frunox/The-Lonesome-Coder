@@ -5,8 +5,6 @@ import ReactMarkdown from 'react-markdown'
 import { firestore } from '../../firebase'
 import './PostList.css'
 
-import postlist from "../../posts.json"
-
 function PostList() {
   const [posts, setPosts] = useState([])
   // const [markdown, setMarkdown] = useState("")
@@ -15,7 +13,7 @@ function PostList() {
 
   useEffect(() => {
     // let blogContent = []
-    const postsRef = firestore.collection('posts')
+    const postsRef = firestore.collection('metadata')
     // fetch(content)
     //   .then((res) => res.text())
     //   .then((text) => setMarkdown(text))
@@ -25,7 +23,10 @@ function PostList() {
           ...doc.data()
         }))
         posts.sort((a, b) => b.postId - a.postId)
-        // console.log('posts: ', posts) 
+        if (posts.length > 3) {
+          posts.splice(3)
+        }
+        console.log('posts: ', posts)
         setPosts(posts)
         // setMarkdown(blogContent)
       })
@@ -34,8 +35,6 @@ function PostList() {
 
   // let welcomePost = posts[posts.length - 1]
   // console.log(welcomePost)
-  const input =
-    "# This is a header\n\nAnd this is a paragraph \n\n # This is header again"
 
   return (
     <div className='postlist'>
@@ -47,12 +46,7 @@ function PostList() {
               <h2>{post.title}</h2>
               <small>Published on {post.date}</small>
               <hr></hr>
-              {console.log(post.content)}
               <ReactMarkdown className='post-card-summary'>{post.summary}</ReactMarkdown>
-              <ReactMarkdown source={input} />
-              <div>
-                <ReactMarkdown source={post.content} escapeHtml={false} />
-              </div>
             </div>
           )
         })
