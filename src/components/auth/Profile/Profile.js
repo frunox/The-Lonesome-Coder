@@ -5,12 +5,14 @@ import { useHistory, Link } from "react-router-dom"
 import './Profile.css'
 
 export default function Profile() {
+  console.log('wwwwwwwwwwww', useAuth)
   const [error, setError] = useState("")
   const { currentUser, logout } = useAuth()
+  console.log(logout)
   const history = useHistory()
 
   if (currentUser) {
-    console.log('Dashboard currentUser', currentUser)
+    // console.log('Dashboard currentUser', currentUser)
   } else {
     console.log('No current user')
     history.push("/")

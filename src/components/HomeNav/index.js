@@ -18,6 +18,7 @@ const HomeNav = props => {
           <li><Link to='/'>Home</Link></li>
           {(currentUser && currentUser.email === 'jrcannon5109@gmail.com') && <li><Link to='/admin'>Admin</Link></li>}
           {currentUser && <li><Link to="/profile">Profile</Link></li>}
+          <li><Link to='/all-posts'>Posts</Link></li>
           {!currentUser &&
             <>
               <li><Link to='/login'>Log In</Link></li>

@@ -3,26 +3,24 @@ import React, { useState, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 // import content from '../../post2.md'
 import { firestore } from '../../firebase'
+import { usePosts } from "../../contexts/PostContext"
 import './PostList.css'
 
 function PostList() {
   const [posts, setPosts] = useState([])
-  // const [markdown, setMarkdown] = useState("")
-  // console.log('Post List: ', postlist)
-
+  console.log('::::::', usePosts)
+  const { savePosts } = usePosts
+  console.log(savePosts)
 
   useEffect(() => {
-    // let blogContent = []
     const postsRef = firestore.collection('metadata')
-    // fetch(content)
-    //   .then((res) => res.text())
-    //   .then((text) => setMarkdown(text))
     postsRef.get()
       .then((snapshot) => {
         const posts = snapshot.docs.map((doc) => ({
           ...doc.data()
         }))
         posts.sort((a, b) => b.postId - a.postId)
+        // savePosts(posts)
         if (posts.length > 3) {
           posts.splice(3)
         }
