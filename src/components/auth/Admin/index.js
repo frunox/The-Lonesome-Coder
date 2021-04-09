@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import app from '../../../firebase'
+// import ReactMarkdown from 'react-markdown'
+// import gfm from 'remark-gfm'
+import Markdown from 'markdown-to-jsx'
 import './Admin.css'
 const parseMD = require("parse-md").default
 
@@ -7,7 +10,9 @@ const parseMD = require("parse-md").default
 function Admin() {
   const [file, setFile] = useState(null)
   const [mData, setMData] = useState('')
-  const [markdown, setMarkdown] = useState('')
+  const [markdownFile, setMarkdownFile] = useState('')
+  const [post, setPost] = useState('')
+  const [postContent, setPostContent] = useState('')
 
   const metadataFileSelectedHandler = async (event) => {
     // console.log(event.target.files[0])
@@ -19,7 +24,7 @@ function Admin() {
     reader.onload = await function () {
       let text = reader.result
       // console.log('text: ', text)
-      setMarkdown(text)
+      setMarkdownFile(text)
     };
     reader.onerror = await function () {
       console.log(reader.error);
@@ -27,26 +32,23 @@ function Admin() {
   }
 
   const parseHandler = async () => {
-    // console.log('markdown', markdown)
-
-    const { metadata, content } = parseMD(markdown)
+    // use parse-md to capture the metadata in the 'metadata' variable and content in the 'content' variable
+    const { metadata, content } = parseMD(markdownFile)
     setMData(metadata)
-    // console.log('metadata: ', metadata)
+    setPostContent(content)
 
     // remove metadata from .md file
-
-
-  }
-
-  const contentFileSelectedHandler = async (event) => {
-    // console.log(event.target.files[0])
-    setFile(event.target.files[0])
+    // split the post file into an array of lines
+    const linesArray = markdownFile.split('\n')
+    linesArray.splice(0, 10)
+    let contentString = linesArray.join("\n")
+    setPost(contentString)
   }
 
   const fileUploadHandler = async (event) => {
     let bucketName = 'markdown'
     let selectedFile = file
-    console.log('selectedFile ', selectedFile)
+    // console.log('selectedFile ', selectedFile)
     let storageRef = app.storage().ref(`${bucketName}/${selectedFile.name}`)
     await storageRef.put(file)
     // get the URL for the file stored
@@ -74,20 +76,21 @@ function Admin() {
         <div className="admin-parse">
           <h4>Choose Metadata File to Parse:</h4>
           <input type='file' onChange={metadataFileSelectedHandler} />
-          <button onClick={parseHandler}>Parse Metadata</button>
+          <button onClick={parseHandler}>Parse Metadata and Preview File</button>
         </div>
 
         <div className="admin-store">
-          <h4>Choose Content File Upload to Storage:</h4>
-          <input type='file' onChange={contentFileSelectedHandler} />
+          <h4>Upload File to Cloud Storage:</h4>
           <button onClick={fileUploadHandler}>Upload File</button>
         </div>
         <div className="admin-metadata">
-          <p>Store Metadata to FireStore</p>
+          <h4>Store Metadata to FireStore</h4>
           <button onClick={metadataStoreHandler}>Store Metadata</button>
         </div>
+        <div>
+          <Markdown>{postContent}</Markdown>
+        </div>
       </div>
-
     </>
   )
 }
