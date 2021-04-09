@@ -12,6 +12,7 @@ function Admin() {
   const [mData, setMData] = useState('')
   const [markdownFile, setMarkdownFile] = useState('')
   const [post, setPost] = useState('')
+  const [postContent, setPostContent] = useState('')
 
   const metadataFileSelectedHandler = async (event) => {
     // console.log(event.target.files[0])
@@ -31,12 +32,13 @@ function Admin() {
   }
 
   const parseHandler = async () => {
-    console.log("FILE: ", file.name)
+    // console.log("FILE: ", file.name)
     // console.log('markdown file', typeof markdownFile, markdownFile)
 
     // usee parse-md to capture the metadata in the 'metadata' variable
     const { metadata, content } = parseMD(markdownFile)
     setMData(metadata)
+    setPostContent(content)
     // setFile(content)
     // console.log('metadata: ', metadata)
 
@@ -44,9 +46,9 @@ function Admin() {
     // split the post file into an array of lines
     const linesArray = markdownFile.split('\n')
     linesArray.splice(0, 10)
-    console.log(linesArray)
+    // console.log(linesArray)
     let contentString = linesArray.join("\n")
-    console.log(contentString)
+    // console.log(contentString)
     setPost(contentString)
     // function to get the indices of the lines with "---"
     // const getIndices = (acc, line, i) => {
@@ -110,7 +112,7 @@ function Admin() {
           <button onClick={metadataStoreHandler}>Store Metadata</button>
         </div>
         <div>
-          <Markdown>{post}</Markdown>
+          <Markdown>{postContent}</Markdown>
         </div>
       </div>
 
