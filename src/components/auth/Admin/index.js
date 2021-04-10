@@ -11,7 +11,7 @@ function Admin() {
   const [file, setFile] = useState(null)
   const [mData, setMData] = useState('')
   const [markdownFile, setMarkdownFile] = useState('')
-  const [post, setPost] = useState('')
+  const [, setPost] = useState('')
   const [postContent, setPostContent] = useState('')
 
   const metadataFileSelectedHandler = async (event) => {

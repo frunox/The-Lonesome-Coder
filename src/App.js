@@ -1,8 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { AuthProvider } from "./contexts/AuthContext"
-import { ModalProvider } from "./contexts/ModalContext"
-import { PostProvider } from "./contexts/PostContext"
+import { firestore } from './firebase'
+import { usePostsUpdate } from "./contexts/PostContext"
 import PrivateRoute from "./components/auth/PrivateRoute"
 import Home from "./pages/Home";
 import LoginPage from './pages/LoginPage'
@@ -14,30 +13,45 @@ import AdminPage from './pages/AdminPage'
 import AllPostsPage from './pages/AllPostsPage'
 import AboutPage from './pages/AboutPage'
 import Post from './components/Post'
+import NotFoundPage from './pages/NotFoundPage'
 import './App.css';
 
 function App() {
+  const savePosts = usePostsUpdate()
+  const [state, setState] = useState(0)
+
+  useEffect(() => {
+    const postsRef = firestore.collection('metadata')
+    postsRef.get()
+      .then((snapshot) => {
+        const posts = snapshot.docs.map((doc) => ({
+          ...doc.data()
+        }))
+        posts.sort((a, b) => b.postId - a.postId)
+        console.log('App: in useEffect, posts.length', posts.length)
+        savePosts(posts)
+        setState(posts.length)
+      })
+  }, [])
+
+  console.log('APP')
   return (
     <React.Fragment>
       <Router>
-        <AuthProvider>
-          <ModalProvider>
-            <PostProvider>
-              <Switch>
-                <Route exact path="/" component={Home} />
-                <Route path="/about" component={AboutPage} />
-                <PrivateRoute path="/profile" component={ProfilePage} />
-                <PrivateRoute path="/update-profile" component={UpdateProfile} />
-                <PrivateRoute path='/admin' component={AdminPage} />
-                <Route exact path="/login" component={LoginPage} />
-                <Route exact path="/signup" component={SignupPage} />
-                <Route path="/forgot-password" component={ForgotPassword} />
-                <Route path="/all-posts" component={AllPostsPage} />
-                <Route path='/post/:id' render={props => <Post {...props} />} />
-              </Switch>
-            </PostProvider>
-          </ModalProvider>
-        </AuthProvider>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/about" component={AboutPage} />
+          <PrivateRoute path="/profile" component={ProfilePage} />
+          <PrivateRoute path="/update-profile" component={UpdateProfile} />
+          <PrivateRoute path='/admin' component={AdminPage} />
+          <Route exact path="/login" component={LoginPage} />
+          <Route exact path="/signup" component={SignupPage} />
+          <Route path="/forgot-password" component={ForgotPassword} />
+          <Route path="/all-posts" component={AllPostsPage} />
+          <Route path='/post/:id' render={props => <Post {...props} />} />
+          <Route path='/404' component={NotFoundPage} />
+        </Switch>
+
       </Router>
     </React.Fragment>
   );

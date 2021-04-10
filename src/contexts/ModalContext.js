@@ -16,7 +16,7 @@ export function ModalProvider({ children }) {
   let errorOpen = state.errorModalOpen
 
   function openErrorModal(setting) {
-    console.log('ModalContext openErrorModal', setting)
+    // console.log('ModalContext openErrorModal', setting)
     return setState({
       ...state,
       errorModalOpen: setting
@@ -24,7 +24,7 @@ export function ModalProvider({ children }) {
   }
 
   function errorMessageHandler(message) {
-    console.log('In errorMessageHandler', message)
+    // console.log('In errorMessageHandler', message)
     return setErrorMessage(message)
   }
 
@@ -34,7 +34,7 @@ export function ModalProvider({ children }) {
     openErrorModal,
     errorMessageHandler
   }
-  console.log('ModalContext errorOpen', errorOpen)
+  // console.log('ModalContext errorOpen', errorOpen)
 
   return (
     <ModalContext.Provider value={value}>

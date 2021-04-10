@@ -53,7 +53,7 @@ export function AuthProvider({ children }) {
     return unsubscribe
   }, [])
 
-  currentUser ? console.log('Current user email', currentUser.email) : console.log('No user')
+  // currentUser ? console.log('Current user email', currentUser.email) : console.log('No user')
 
   const value = {
     currentUser,
