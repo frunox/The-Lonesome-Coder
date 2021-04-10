@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 /notes
+/src/posts
 /.pnp
 .pnp.js
 
