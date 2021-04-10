@@ -1,31 +1,31 @@
 import React, { useState, useContext } from "react"
 
 const PostContext = React.createContext()
+const PostUpdateContext = React.createContext()
 
 
 export function usePosts() {
   return useContext(PostContext)
 }
 
+export function usePostsUpdate() {
+  return useContext(PostUpdateContext)
+}
+
 export function PostProvider({ children }) {
-  const [postList, setPostList] = useState([])
-  let postsArray = postList
+  const [postArray, setPostArray] = useState([])
 
   function savePosts(posts) {
-    console.log('PostContext savePosts', posts)
-    return setPostList(posts)
+    return setPostArray(posts)
   }
 
-  const value = {
-    postsArray,
-    savePosts
-  }
-
-  console.log('PostContext PostList', postList)
+  console.log('PostContext: postArray', postArray)
 
   return (
-    <PostContext.Provider value={value}>
-      {children}
+    <PostContext.Provider value={postArray}>
+      <PostUpdateContext.Provider value={savePosts} >
+        {children}
+      </PostUpdateContext.Provider>
     </PostContext.Provider>
   )
 }

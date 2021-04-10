@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react'
 // import Markdown from 'markdown-to-jsx'
 import ReactMarkdown from 'react-markdown'
-// import content from '../../post2.md'
 import { firestore } from '../../firebase'
-import { usePosts } from "../../contexts/PostContext"
+// import { usePosts } from "../../contexts/PostContext"
+import { usePostsUpdate } from "../../contexts/PostContext"
 import './PostList.css'
 
 function PostList() {
   const [posts, setPosts] = useState([])
-  console.log('::::::', usePosts)
-  const { savePosts } = usePosts
-  console.log(savePosts)
+  const savePosts = usePostsUpdate()
 
   useEffect(() => {
     const postsRef = firestore.collection('metadata')
@@ -20,25 +18,25 @@ function PostList() {
           ...doc.data()
         }))
         posts.sort((a, b) => b.postId - a.postId)
-        // savePosts(posts)
-        if (posts.length > 3) {
-          posts.splice(3)
-        }
-        console.log('posts: ', posts)
+        console.log('PostList: in useEffect, posts.length', posts.length)
+        savePosts(posts)
+
         setPosts(posts)
-        // setMarkdown(blogContent)
       })
-    // console.log(markdown)
   }, [])
 
-  // let welcomePost = posts[posts.length - 1]
-  // console.log(welcomePost)
+  console.log('PostList: Posts length after useEffect', posts.length)
+  let array = [...posts]
+  if (array.length > 3) {
+    array.splice(3)
+  }
+  console.log('PostList: array spliced: ', array, 'posts length', posts.length)
 
   return (
     <div className='postlist'>
       {
-        posts.length &&
-        posts.map((post, i) => {
+        array.length &&
+        array.map((post, i) => {
           return (
             <div className="post-card" key={post.postId}>
               <h2>{post.title}</h2>
