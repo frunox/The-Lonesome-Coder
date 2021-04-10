@@ -13,7 +13,7 @@ import UpdateProfile from './components/auth/UpdateProfile/UpdateProfile'
 import AdminPage from './pages/AdminPage'
 import AllPostsPage from './pages/AllPostsPage'
 import AboutPage from './pages/AboutPage'
-import PostPage from './pages/PostPage'
+import Post from './components/Post'
 import './App.css';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
                 <Route exact path="/signup" component={SignupPage} />
                 <Route path="/forgot-password" component={ForgotPassword} />
                 <Route path="/all-posts" component={AllPostsPage} />
-                <Route path='/post/:id' render={props => <PostPage {...props} />} />
+                <Route path='/post/:id' render={props => <Post {...props} />} />
               </Switch>
             </PostProvider>
           </ModalProvider>

@@ -5,7 +5,7 @@ import './AllPosts.css'
 
 function AllPosts() {
   const postArray = usePosts()
-  console.log("AllPosts: postList", postArray)
+  console.log("AllPosts: postArray", postArray)
   return (
     <div className='all-posts-content'>
       <h3 className='home-message'>All Posts...</h3>
