@@ -12,6 +12,7 @@ import ForgotPassword from './components/auth/ForgotPassword/ForgotPassword'
 import UpdateProfile from './components/auth/UpdateProfile/UpdateProfile'
 import AdminPage from './pages/AdminPage'
 import AllPostsPage from './pages/AllPostsPage'
+import AboutPage from './pages/AboutPage'
 import './App.css';
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
             <PostProvider>
               <Switch>
                 <Route exact path="/" component={Home} />
+                <Route path="/about" component={AboutPage} />
                 <PrivateRoute path="/profile" component={ProfilePage} />
                 <PrivateRoute path="/update-profile" component={UpdateProfile} />
                 <PrivateRoute path='/admin' component={AdminPage} />
