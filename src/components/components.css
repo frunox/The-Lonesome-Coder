@@ -1,0 +1,7 @@
+.content {
+  z-index: 10;
+  position: relative;
+  top: 60px;
+  width: 70%;
+  margin: auto;
+}

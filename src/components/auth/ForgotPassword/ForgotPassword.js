@@ -11,7 +11,7 @@ export default function ForgotPassword() {
 
   const { resetPassword } = useAuth()
   const { errorOpen, openErrorModal, errorMessageHandler } = useModal()
-  const [error, setError] = useState("")
+  const [, setError] = useState("")
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
 

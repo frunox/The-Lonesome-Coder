@@ -1,12 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { AuthProvider } from "./contexts/AuthContext"
+import { ModalProvider } from "./contexts/ModalContext"
+import { PostProvider } from "./contexts/PostContext"
 import './index.css';
-import 'semantic-ui-css/semantic.min.css'
 import App from './App';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <AuthProvider>
+    <ModalProvider>
+      <PostProvider>
+        <App />
+      </PostProvider>
+    </ModalProvider>
+  </AuthProvider>,
   document.getElementById('root')
 );

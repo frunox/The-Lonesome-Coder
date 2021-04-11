@@ -28,7 +28,7 @@ const HomeNav = props => {
           }
         </ul>
       </nav>
-      <label for='navbar-toggle' className='navbar-toggle-label'>
+      <label htmlFor='navbar-toggle' className='navbar-toggle-label'>
         <span></span>
       </label>
     </header>
