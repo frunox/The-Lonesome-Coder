@@ -11,7 +11,7 @@ function Admin() {
   const [file, setFile] = useState(null)
   const [mData, setMData] = useState('')
   const [markdownFile, setMarkdownFile] = useState('')
-  const [, setPost] = useState('')
+  const [post, setPost] = useState('')
   const [postContent, setPostContent] = useState('')
 
   const metadataFileSelectedHandler = async (event) => {
@@ -42,31 +42,37 @@ function Admin() {
     const linesArray = markdownFile.split('\n')
     linesArray.splice(0, 10)
     let contentString = linesArray.join("\n")
-    setPost(contentString)
+    console.log(contentString)
+    // setPost(contentString)
   }
 
-  const fileUploadHandler = async (event) => {
-    let bucketName = 'markdown'
-    let selectedFile = file
-    // console.log('selectedFile ', selectedFile)
-    let storageRef = app.storage().ref(`${bucketName}/${selectedFile.name}`)
-    await storageRef.put(file)
-    // get the URL for the file stored
-    const mdFileUrl = await storageRef.getDownloadURL()
-    console.log('File URL: ', mdFileUrl)
-    setMData({ ...mData, url: mdFileUrl })
-  }
+  // const fileUploadHandler = async (event) => {
+  //   let bucketName = 'markdown'
+  //   let selectedFile = file
+  //   // console.log('selectedFile ', selectedFile)
+  //   let storageRef = app.storage().ref(`${bucketName}/${selectedFile.name}`)
+  //   await storageRef.put(file)
+  //   // get the URL for the file stored
+  //   const mdFileUrl = await storageRef.getDownloadURL()
+  //   console.log('File URL: ', mdFileUrl)
+  //   setMData({ ...mData, url: mdFileUrl })
+  // }
 
   const metadataStoreHandler = () => {
-    console.log('metadata: ', mData)
+    const postObject = mData
+    postObject.content = postContent
+    // console.log('postObject: ', postObject)
     const storageRef = app.firestore().collection("metadata")
-    console.log('storageRef', storageRef)
+    // console.log('storageRef', storageRef)
     storageRef
       .doc()
-      .set(mData)
+      .set(postObject)
       .catch((err) => {
         console.log(err)
       })
+    let string = postObject.content
+    console.log(string)
+    setPost(string)
   }
 
   return (
@@ -79,16 +85,16 @@ function Admin() {
           <button onClick={parseHandler}>Parse Metadata and Preview File</button>
         </div>
 
-        <div className="admin-store">
+        {/* <div className="admin-store">
           <h4>Upload File to Cloud Storage:</h4>
           <button onClick={fileUploadHandler}>Upload File</button>
-        </div>
+        </div> */}
         <div className="admin-metadata">
-          <h4>Store Metadata to FireStore</h4>
-          <button onClick={metadataStoreHandler}>Store Metadata</button>
+          <h4>Store Post to FireStore</h4>
+          <button onClick={metadataStoreHandler}>Store Post</button>
         </div>
         <div>
-          <Markdown>{postContent}</Markdown>
+          <Markdown>{post}</Markdown>
         </div>
       </div>
     </>

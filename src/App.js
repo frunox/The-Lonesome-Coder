@@ -18,7 +18,6 @@ import './App.css';
 
 function App() {
   const savePosts = usePostsUpdate()
-  const [state, setState] = useState(0)
 
   useEffect(() => {
     const postsRef = firestore.collection('metadata')
@@ -28,9 +27,8 @@ function App() {
           ...doc.data()
         }))
         posts.sort((a, b) => b.postId - a.postId)
-        console.log('App: in useEffect, posts.length', posts.length)
         savePosts(posts)
-        setState(posts.length)
+        console.log('App: in useEffect, posts.length', posts.length)
       })
   }, [])
 
