@@ -6,6 +6,10 @@
   margin: auto;
 }
 
+.content p {
+  margin-bottom: 4px;
+}
+
 .home-headline {
   font-size: 22px;
   text-transform: uppercase;
@@ -16,17 +20,14 @@
 }
 
 .home-message {
-  width: 75%;
-  margin: auto;
+  margin-left: 15%;
   text-align: left;
 }
 
 .post-card-fixed {
-  width: 90%;
+  width: 98%;
   margin: auto;
   text-align: left;
-  margin-bottom: 1em;
-  padding: 2px;
 }
 
 .post-card-fixed blockquote {

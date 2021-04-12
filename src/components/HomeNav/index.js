@@ -11,7 +11,7 @@ const HomeNav = props => {
     <header className='navbar-header'>
       <div className='navbar-logo-background'></div>
       <div><img className='navbar-logo' src="https://i.ibb.co/Hxn05GZ/soaring-bird.png" alt='logo'></img></div>
-      <div className='navbar-title'><a href='/'>TITLE</a></div>
+      <div className='navbar-title'><a href='/'>A Coder's Quest</a></div>
       <input type='checkbox' id="navbar-toggle" className="navbar-toggle"></input>
       <nav className='navbar-nav'>
         <ul className='navbar-ul'>

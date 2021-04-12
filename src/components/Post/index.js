@@ -29,7 +29,7 @@ function Post(props) {
         {/* <h3>Author: {postArray[id].author}</h3> */}
         <small>Published on {postArray[id].date}</small>
         <hr></hr>
-        <ReactMarkdown>{postArray[id].content}</ReactMarkdown>
+        <ReactMarkdown linkTarget={'_blank_'}>{postArray[id].content}</ReactMarkdown>
       </div>
     </React.Fragment>
   )

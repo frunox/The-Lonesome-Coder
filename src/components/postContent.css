@@ -30,5 +30,12 @@
 
 .post-content pre {
   margin: 0.5rem 1em;
+  padding: 8px;
   background-color: rgb(186, 203, 235);
+}
+
+.post-content img {
+  width: 100%;
+  height: auto;
+  background-color: white;
 }
