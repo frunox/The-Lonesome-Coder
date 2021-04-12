@@ -17,9 +17,9 @@ const HomeNav = props => {
         <ul className='navbar-ul'>
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/about'>About</Link></li>
+          <li><Link to='/all-posts'>Posts</Link></li>
           {(currentUser && currentUser.email === 'jrcannon5109@gmail.com') && <li><Link to='/admin'>Admin</Link></li>}
           {currentUser && <li><Link to="/profile">Profile</Link></li>}
-          <li><Link to='/all-posts'>Posts</Link></li>
           {!currentUser &&
             <>
               <li><Link to='/login'>Log In</Link></li>

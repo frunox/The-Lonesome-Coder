@@ -43,7 +43,7 @@ function Admin() {
     linesArray.splice(0, 10)
     let contentString = linesArray.join("\n")
     console.log(contentString)
-    // setPost(contentString)
+    setPost(contentString)
   }
 
   // const fileUploadHandler = async (event) => {
