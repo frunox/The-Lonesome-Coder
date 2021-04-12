@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import app from '../../../firebase'
-// import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown'
 // import gfm from 'remark-gfm'
-import Markdown from 'markdown-to-jsx'
+// import Markdown from 'markdown-to-jsx'
 import '../../postContent.css'
 const parseMD = require("parse-md").default
 
@@ -12,6 +12,7 @@ function Admin() {
   const [markdownFile, setMarkdownFile] = useState('')
   const [postContent, setPostContent] = useState('')
   const [postUids, setPostUids] = useState([])
+  const [message, setMessage] = useState("")
 
   const selectedFileHandler = async (event) => {
     // console.log(event.target.files[0])
@@ -28,58 +29,39 @@ function Admin() {
     };
   }
 
-  const postUidArray = []
+  // const postUidArray = []
 
   const parseHandler = async () => {
     // use parse-md to capture the metadata in the 'metadata' variable and content in the 'content' variable
     const { metadata, content } = parseMD(markdownFile)
     setMData(metadata)
     setPostContent(content)
-
+    console.log(metadata)
     // remove metadata from .md file
     // split the post file into an array of lines
     const linesArray = markdownFile.split('\n')
     linesArray.splice(0, 10)
     let contentString = linesArray.join("\n")
     setPostContent(contentString)
-    postUidArray.push(metadata.postUid)
-    setPostUids(postUidArray)
+    postUids.push(metadata.postUid)
+    setPostUids(postUids)
+    console.log(postUids)
   }
 
-  // const fileUploadHandler = async (event) => {
-  //   let bucketName = 'markdown'
-  //   let selectedFile = file
-  //   // console.log('selectedFile ', selectedFile)
-  //   let storageRef = app.storage().ref(`${bucketName}/${selectedFile.name}`)
-  //   await storageRef.put(file)
-  //   // get the URL for the file stored
-  //   const mdFileUrl = await storageRef.getDownloadURL()
-  //   console.log('File URL: ', mdFileUrl)
-  //   setMData({ ...mData, url: mdFileUrl })
-  // }
-
-  const metadataStoreHandler = () => {
+  const postStoreHandler = () => {
+    setMessage('')
     const postObject = mData
     postObject.content = postContent
-    // console.log('postObject: ', postObject)
     const storageRef = app.firestore().collection("metadata")
     // console.log('storageRef', storageRef)
-    if (postUidArray.includes(postObject.postUid)) {
-      storageRef
-        .doc(postObject.postUid)
-        .set(postObject)
-        .catch((err) => {
-          console.log(err)
-        })
-    } else (
-      storageRef
-        .doc(postObject.postUid)
-        .update(postObject)
-        .catch((err) => {
-          console.log(err)
-        })
-    )
-
+    storageRef
+      .doc(postObject.postUid)
+      .set(postObject)
+      .catch((err) => {
+        console.log(err)
+        setMessage('Firebase save post error. ' + err)
+      })
+    setMessage('New post saved/updated.')
   }
 
   return (
@@ -92,16 +74,13 @@ function Admin() {
           <button onClick={parseHandler}>Parse Metadata and Preview File</button>
         </div>
 
-        {/* <div className="admin-store">
-          <h4>Upload File to Cloud Storage:</h4>
-          <button onClick={fileUploadHandler}>Upload File</button>
-        </div> */}
         <div className="admin-metadata">
           <h4>Store Post to FireStore</h4>
-          <button onClick={metadataStoreHandler}>Store/Update Post</button>
+          <button onClick={postStoreHandler}>Store/Update Post</button>
         </div>
+        <h3 className='admin-message'>Message: {message}</h3>
         <div className='post-content'>
-          <Markdown linkTarget={'_blank_'}>{postContent}</Markdown>
+          <ReactMarkdown linkTarget={'_blank_'}>{postContent}</ReactMarkdown>
         </div>
       </div>
     </>
