@@ -4,7 +4,8 @@ import ReactMarkdown from 'react-markdown'
 // import app from '../../firebase'
 import { usePosts } from '../../contexts/PostContext'
 import HomeNav from '../HomeNav'
-import './Post.css'
+// import './Post.css'
+import '../components.css'
 
 function Post(props) {
   const postArray = usePosts()
@@ -23,7 +24,7 @@ function Post(props) {
   return (
     <React.Fragment>
       <HomeNav />
-      <div className='post-content'>
+      <div className='content'>
         <h2>{postArray[id].title}</h2>
         <h2>Author: {postArray[id].author}</h2>
         <small>Published on {postArray[id].date}</small>

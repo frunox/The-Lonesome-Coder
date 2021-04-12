@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 // import { usePosts } from "../../contexts/PostContext"
 import { usePosts } from "../../contexts/PostContext"
-import './PostList.css'
+import '../components.css'
 
 function PostList() {
   const postArray = usePosts()
@@ -24,7 +24,7 @@ function PostList() {
         array.map((post, i) => {
           return (
             <div className="post-card" key={post.postId}>
-              <Link to={`/post/${i}`}>
+              <Link className='post-link' to={`/post/${i}`}>
                 <h2>{post.title}</h2>
                 <small>Published on {post.date}</small>
                 <hr></hr>
