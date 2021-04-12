@@ -81,6 +81,18 @@
   text-decoration: none;
 }
 
+.allposts-search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.allposts-searchbox {
+  margin-left: 8px;
+  width: 200px;
+}
+
 @media screen and (min-width: 800px) {
   .content {
     z-index: 10;
