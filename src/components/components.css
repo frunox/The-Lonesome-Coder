@@ -1,9 +1,24 @@
 .content {
   z-index: 10;
   position: relative;
-  top: 60px;
-  width: 70%;
+  top: 65px;
+  width: 96%;
   margin: auto;
+}
+
+.home-headline {
+  font-size: 22px;
+  text-transform: uppercase;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1em;
+}
+
+.home-message {
+  width: 75%;
+  margin: auto;
+  text-align: left;
 }
 
 .post-card-fixed {
@@ -14,8 +29,16 @@
   padding: 2px;
 }
 
+.post-card-fixed blockquote {
+  margin: 12px 1em;
+  background-color: rgba(255, 208, 0, 0.5);
+  border-radius: 5px;
+  padding: 0.5em;
+  font-size: 1.1em;
+}
+
 .postlist {
-  width: 60%;
+  width: 70%;
   margin: auto;
   text-align: center;
 }
@@ -30,6 +53,11 @@
 .post-card:hover {
   border-color: rgb(172, 162, 206);
   box-shadow: 4px 4px 4px 4px rgb(172, 162, 206), 4px 4px 4px 4px white;
+}
+
+.post-title {
+  font-size: 1.2em;
+  font-weight: 500;
 }
 
 .click {
@@ -50,4 +78,30 @@
 .post-link {
   color: black;
   text-decoration: none;
+}
+
+@media screen and (min-width: 800px) {
+  .content {
+    z-index: 10;
+    position: relative;
+    top: 65px;
+    width: 70%;
+    margin: auto;
+  }
+
+  .postlist {
+    /* width: 70%; */
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .post-title {
+    font-size: 1.875em;
+    font-weight: lighter;
+  }
+
+  .post-card-fixed blockquote {
+    margin: 12px 2em;
+  }
 }

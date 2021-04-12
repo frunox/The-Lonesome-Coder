@@ -16,7 +16,7 @@ function AllPosts() {
           return (
             <Link className='post-link' to={`/post/${i}`}>
               <div className="post-card" key={post.postId}>
-                <h2>{post.title}</h2>
+                <h2 className='post-title'>{post.title}</h2>
                 <small>Published on {post.date}</small>
                 <hr></hr>
                 <ReactMarkdown className='post-card-summary'>{post.summary}</ReactMarkdown>
