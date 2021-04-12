@@ -1,4 +1,5 @@
 ---
+postUid: postUid2
 postId: 2
 title: Markdown! (Not a Sales Pitch)
 date: April 5, 2021
@@ -8,7 +9,7 @@ keywords: markdown parse-md react-markdown firestore
 filename: 02_CB-using-markdown.md
 ---
 
-![markdown logo](../assets/markdown-mark.png)
+![markdown logo](https://i.ibb.co/2Sq1PD9/markdown-mark.png)
 
 One of the first topics I researched when building the blog was how to create the blog posts. Writing HTML or JSX is clumsy, and I like simple.
 
@@ -16,7 +17,9 @@ It became clear that Markdown was the way to go. It's used in writing _readme.md
 
 ## Loading a Markdown File in React
 
-React prevents the use the Nodejs filesystem. But, you can read files using the Javascript FileReader class. I use hooks and functional components, so this is the setup:
+First, add `<input type='file' onChange={metadataFileSelectedHandler} />` in the JSX to render a file picker.
+
+React prevents the use the Nodejs filesystem. But, you can read files using the Javascript [FileReader](https://www.w3docs.com/learn-javascript/file-and-filereader.html) class. I use hooks and functional components, so this is the setup:
 
 ```js
 function Admin() {
@@ -24,11 +27,10 @@ function Admin() {
   const [markdownFile, setMarkdownFile] = useState('')
   const [postContent, setPostContent] = useState('')
 
-  const metadataFileSelectedHandler = async (event) => {
+  const selectedFileHandler = async (event) => {
     setFile(event.target.files[0])
     let rawFile = (event.target.files[0])
     let reader = new FileReader()
-
     reader.readAsText(rawFile)
     reader.onload = await function () {
       let text = reader.result
@@ -39,14 +41,13 @@ function Admin() {
     };
   };
 
-    const parseHandler = async () => {
+  const parseHandler = async () => {
     const { metadata, content } = parseMD(markdownFile)
     setMData(metadata)
     setPostContent(content)
     const linesArray = markdownFile.split('\n')
-    linesArray.splice(0, 10)
+    linesArray.splice(0, 11)
     let contentString = linesArray.join("\n")
-    console.log(contentString)
     setPost(contentString)
   };
 
