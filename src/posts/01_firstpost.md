@@ -1,10 +1,11 @@
 ---
+postUid: postUid1
 postId: 1
 title: What This Blog is About
 date: April 5, 2021
 author: lonesome-coder
 summary: What is this blog about?...
-keywords: general
+keywords: general blog
 filename: 01_firstpost.md
 ---
 

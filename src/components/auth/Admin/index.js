@@ -3,33 +3,32 @@ import app from '../../../firebase'
 // import ReactMarkdown from 'react-markdown'
 // import gfm from 'remark-gfm'
 import Markdown from 'markdown-to-jsx'
-import './Admin.css'
+import '../../postContent.css'
 const parseMD = require("parse-md").default
 
 
 function Admin() {
-  const [file, setFile] = useState(null)
   const [mData, setMData] = useState('')
   const [markdownFile, setMarkdownFile] = useState('')
-  const [post, setPost] = useState('')
   const [postContent, setPostContent] = useState('')
+  const [postUids, setPostUids] = useState([])
 
-  const metadataFileSelectedHandler = async (event) => {
+  const selectedFileHandler = async (event) => {
     // console.log(event.target.files[0])
-    setFile(event.target.files[0])
     let rawFile = (event.target.files[0])
     let reader = new FileReader()
-
     reader.readAsText(rawFile)
     reader.onload = await function () {
-      let text = reader.result
+      let file = reader.result
       // console.log('text: ', text)
-      setMarkdownFile(text)
+      setMarkdownFile(file)
     };
     reader.onerror = await function () {
       console.log(reader.error);
     };
   }
+
+  const postUidArray = []
 
   const parseHandler = async () => {
     // use parse-md to capture the metadata in the 'metadata' variable and content in the 'content' variable
@@ -42,8 +41,9 @@ function Admin() {
     const linesArray = markdownFile.split('\n')
     linesArray.splice(0, 10)
     let contentString = linesArray.join("\n")
-    console.log(contentString)
-    setPost(contentString)
+    setPostContent(contentString)
+    postUidArray.push(metadata.postUid)
+    setPostUids(postUidArray)
   }
 
   // const fileUploadHandler = async (event) => {
@@ -64,15 +64,22 @@ function Admin() {
     // console.log('postObject: ', postObject)
     const storageRef = app.firestore().collection("metadata")
     // console.log('storageRef', storageRef)
-    storageRef
-      .doc()
-      .set(postObject)
-      .catch((err) => {
-        console.log(err)
-      })
-    let string = postObject.content
-    console.log(string)
-    setPost(string)
+    if (postUidArray.includes(postObject.postUid)) {
+      storageRef
+        .doc(postObject.postUid)
+        .set(postObject)
+        .catch((err) => {
+          console.log(err)
+        })
+    } else (
+      storageRef
+        .doc(postObject.postUid)
+        .update(postObject)
+        .catch((err) => {
+          console.log(err)
+        })
+    )
+
   }
 
   return (
@@ -81,7 +88,7 @@ function Admin() {
         <h2>Admin Page</h2>
         <div className="admin-parse">
           <h4>Choose Metadata File to Parse:</h4>
-          <input type='file' onChange={metadataFileSelectedHandler} />
+          <input type='file' onChange={selectedFileHandler} />
           <button onClick={parseHandler}>Parse Metadata and Preview File</button>
         </div>
 
@@ -91,10 +98,10 @@ function Admin() {
         </div> */}
         <div className="admin-metadata">
           <h4>Store Post to FireStore</h4>
-          <button onClick={metadataStoreHandler}>Store Post</button>
+          <button onClick={metadataStoreHandler}>Store/Update Post</button>
         </div>
-        <div>
-          <Markdown>{post}</Markdown>
+        <div className='post-content'>
+          <Markdown linkTarget={'_blank_'}>{postContent}</Markdown>
         </div>
       </div>
     </>
