@@ -24,7 +24,7 @@ function PostList() {
         array.map((post, i) => {
           return (
             <div className="post-card" key={post.postId}>
-              <Link className='post-link' to={`/post/${i}`}>
+              <Link className='post-link' to={`/post/${post.postId}`}>
                 <h2 className='post-title'>{post.title}</h2>
                 <small>Published on {post.date}</small>
                 <hr></hr>

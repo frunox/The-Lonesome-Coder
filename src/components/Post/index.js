@@ -3,29 +3,22 @@ import { Redirect } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
 import { usePosts } from '../../contexts/PostContext'
-import { usePostSortStatus } from '../../contexts/PostContext'
-import { usePostSortToggle } from '../../contexts/PostContext'
 
 import HomeNav from '../HomeNav'
 import '../postContent.css'
 
 function Post(props) {
   const postArray = usePosts()
-  const postSort = usePostSortStatus()
-  const togglePostSort = usePostSortToggle()
   console.log('Post: postArray', postArray)
   // const postIndex = postArray.length
   let id = parseInt(props.match.params.id)
 
-  if (postSort) {
-    function findPostId(element) {
-      return element.postId === id
-    }
-    id = postArray.findIndex(findPostId)
-    togglePostSort()
+  function findPostId(element) {
+    return element.postId === id
   }
+  id = postArray.findIndex(findPostId)
 
-  console.log('id: ', id)
+  console.log('POST id after sort: ', id)
   const maxValidId = postArray[0].postId
   console.log('maxValidId', maxValidId)
 

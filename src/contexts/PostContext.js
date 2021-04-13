@@ -34,7 +34,6 @@ export function PostProvider({ children }) {
     setPostSort(prevPostSort => !prevPostSort)
   }
 
-  console.log('PostContext: postArray', postArray)
 
   return (
     <PostContext.Provider value={postArray}>
