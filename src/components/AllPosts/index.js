@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { usePosts } from "../../contexts/PostContext"
+import { usePostSortToggle } from '../../contexts/PostContext'
 import '../components.css'
 
 function AllPosts() {
   const [state, setState] = useState()
   const [renderArray, setRenderArray] = useState([])
   let postArray = usePosts()
+  const togglePostSort = usePostSortToggle()
+
   useEffect(() => {
     setRenderArray(postArray)
   }, [postArray])
@@ -23,6 +26,7 @@ function AllPosts() {
   const searchHandler = (e) => {
     e.preventDefault()
     searchArray = []
+    togglePostSort()
     console.log('in searchHandler', state)
     let searchString = state.searchbox
     console.log(searchString)

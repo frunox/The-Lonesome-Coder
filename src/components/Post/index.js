@@ -1,24 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
-// import app from '../../firebase'
+
 import { usePosts } from '../../contexts/PostContext'
+import { usePostSortStatus } from '../../contexts/PostContext'
+import { usePostSortToggle } from '../../contexts/PostContext'
+
 import HomeNav from '../HomeNav'
-// import './Post.css'
 import '../postContent.css'
 
 function Post(props) {
+  // const [sort, setSort] = useState(false)
   const postArray = usePosts()
+  const postSort = usePostSortStatus()
+  const togglePostSort = usePostSortToggle()
   console.log('Post: postArray', postArray)
   // const postIndex = postArray.length
-  const postIndexId = parseInt(props.match.params.id)
+  let id = parseInt(props.match.params.id)
 
-  function findPostId(element) {
-    return element.postId === postIndexId
+  if (postSort) {
+    function findPostId(element) {
+      return element.postId === id
+    }
+    id = postArray.findIndex(findPostId)
+    togglePostSort()
   }
 
-  const id = postArray.findIndex(findPostId)
-  console.log('id: ', id, 'type', typeof id)
+  console.log('id: ', id)
   const maxValidId = postArray[0].postId
   console.log('maxValidId', maxValidId)
 
@@ -34,7 +42,7 @@ function Post(props) {
         <h1>{postArray[id].title}</h1>
         {/* <h3>Author: {postArray[id].author}</h3> */}
         <small>Published on {postArray[id].date}</small>
-        <hr></hr>
+        <hr />
         <ReactMarkdown linkTarget={'_blank_'}>{postArray[id].content}</ReactMarkdown>
       </div>
     </React.Fragment>
