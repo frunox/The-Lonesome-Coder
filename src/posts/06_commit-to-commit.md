@@ -1,12 +1,12 @@
 ---
-postUid: postUid5
-postId: 5
+postUid: postUid6
+postId: 6
 title: Commit to Commit
 date: April 12, 2021
 author: lonesome-coder
 summary: Ever get on a roll, when an error arises, and you find yourself undoing working code. You need to commit to commit...
 keywords: CSS
-filename: 05_commit-to-commit.md
+filename: 06_commit-to-commit.md
 ---
 
 I've done this too many times. I'm coding along, everything is working. I write, save, check the browser. All good. Until it isn't.

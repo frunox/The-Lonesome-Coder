@@ -4,7 +4,7 @@ postId: 2
 title: Markdown! (Not a Sales Pitch)
 date: April 6, 2021
 author: lonesome-coder
-summary: Markdown is the simplest way to add content to a website. There are a few things to learn to use it with React...
+summary: Markdown is the simplest way to add content to a website. There are a couple of tool that are needed to used in a React project...
 keywords: markdown parse-md react-markdown firestore
 filename: 02_CB-use-markdown.md
 ---
@@ -15,57 +15,19 @@ One of the first topics I researched when building the blog was how to create th
 
 It became clear that Markdown was the way to go. It's used in writing _readme.md_ files that you store with your repositories. There are special characters that are used to format Markdown, but they are easier to type than tags. [Here](https://commonmark.org/help/) is a cheatsheet to help you get started.
 
-## Loading a Markdown File in React
-
-First, add `<input type='file' onChange={metadataFileSelectedHandler} />` in the JSX to render a file picker.
-
-React prevents the use the Nodejs filesystem. But, you can read files using the Javascript [FileReader](https://www.w3docs.com/learn-javascript/file-and-filereader.html) class. I use hooks and functional components, so this is the setup:
-
-```js
-function Admin() {
-  const [mData, setMData] = useState('')
-  const [markdownFile, setMarkdownFile] = useState('')
-  const [postContent, setPostContent] = useState('')
-
-  const selectedFileHandler = async (event) => {
-    setFile(event.target.files[0])
-    let rawFile = (event.target.files[0])
-    let reader = new FileReader()
-    reader.readAsText(rawFile)
-    reader.onload = await function () {
-      let text = reader.result
-      setMarkdownFile(text)
-    };
-    reader.onerror = await function () {
-      console.log(reader.error);
-    };
-  };
-
-  const parseHandler = async () => {
-    const { metadata, content } = parseMD(markdownFile)
-    setMData(metadata)
-    setPostContent(content)
-    const linesArray = markdownFile.split('\n')
-    linesArray.splice(0, 11)
-    let contentString = linesArray.join("\n")
-    setPost(contentString)
-  };
-
-```
-
-## How to Render Markdown in React
-
-So how do you get the Markdown-formatted content to render on the brower? I use two techniques.
+## Formatting a Markdown File
 
 For each post, I write a _\*.md_ file. What's great about this is that code editors like VS Code let you open a view that shows what the rendered content looks like.
 
-A trick I picked up is to add metadata to the files. Start the file with _`---`_, and anything entered until the next line with _`---`_ is interpreted as metadata by the _parse\-.md_ package (see [npm parse\_.md](https://www.npmjs.com/package/parse-md)). Here's an example:
+A trick I picked up is to add metadata to the files. Put _---_ on the first line, and anything entered until the next line with _---_ is interpreted as metadata by the _parse\-.md_ package (see [npm parse\_.md](https://www.npmjs.com/package/parse-md)). Here's an example:
 
 ```js
 ---
+postUid: postUid1
 postId: 1
-TItle: Post Title
-Date:  April 1, 2021
+title: Post Title
+date:  April 1, 2021
+author: Whoever
 summary: Write an attention-getting summary here...
 keywords: markdown parse-md react-markdown firestore
 filename: filename.md
@@ -74,10 +36,16 @@ filename: filename.md
 ...
 ```
 
-The posts are saved to Firestore, and retrieved as an array of objects. I use the `postId` to sort the posts in descending order so the most recent post is shown first.
+The _title_, _date_, _author_ and _filename_ lines are standard metadata. The _postId_ is used to sort an array of all the posts in descending order so the most recent post is at the top. The _keywords_ are used to search for posts from the entire list. I'll explain _postUid_ and get into the code in a future post.
 
-The _parse_md_ package makes it easy to separate the metadata from the content. Just do this:
+This format is known a _YAML Front Matter_. There seem to be some advanced packages for working with it, but _parse\-.md_ is simple, and that's where I'm at now.
 
-```js
-const { metadata, content } = parseMD(string);
-```
+## Markdown to JSX
+
+After a Markdown file is read into the React code, it needs to be converted to JSX so it can be rendered. There are several package that do this, including [_remark_](https://www.npmjs.com/package/marked) and [_markdown-to-jsx_](https://www.npmjs.com/package/markdown-to-jsx), among others.
+
+I'm using [_react-markdown_](https://www.npmjs.com/package/react-markdown) because, as is usual for me, it's pretty easy to use. It's also popular and well documented, good signs that it is actively supported.
+
+What is does is create a custom React component the you wrap the Markdown content in. It translates the Markdown formatting to JSX. For example, a top Markdown heading (#) is translated to a `<h1>` tag, or a paragraph of text is wrapped in a `<p>` tag. You can add your on styling from there.
+
+Creating content in Markdown speeds up the process. Since it is rendered in common HTML tags, styling is straightforward. Yep, it's the way to go.

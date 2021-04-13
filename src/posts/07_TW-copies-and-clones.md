@@ -1,12 +1,12 @@
 ---
-postUid: postUid6
-postId: 6
+postUid: postUid7
+postId: 7
 title: Time Waster - Copies and Clones, Oh, My!
 date: April 10, 2021
 author: lonesome-coder
 summary: Did you forget to clone your array?  I did, and spent hours trying to fix a bug that propogated in unexpected ways...
 keywords: javascript clone deep-copy
-filename: 06_TW-copies-and-clones.md
+filename: 07_TW-copies-and-clones.md
 ---
 
 This is the first of a (unfortunately, pretty lengthy) series of posts about Time Wasters: problems that usually seem complex but often have simple solutions. Solutions that I should know but mostly just forgot.
