@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Redirect } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 
@@ -10,7 +10,6 @@ import HomeNav from '../HomeNav'
 import '../postContent.css'
 
 function Post(props) {
-  // const [sort, setSort] = useState(false)
   const postArray = usePosts()
   const postSort = usePostSortStatus()
   const togglePostSort = usePostSortToggle()
