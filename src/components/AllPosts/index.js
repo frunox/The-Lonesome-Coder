@@ -34,10 +34,7 @@ function AllPosts() {
       }
     }
     console.log("AllPosts searchArray: ", searchArray)
-    if (searchArray.length > 0) {
-      setRenderArray(searchArray)
-      console.log('postArray after searh', postArray)
-    }
+    setRenderArray(searchArray)
   }
 
   return (
@@ -47,20 +44,22 @@ function AllPosts() {
         <input className="allposts-searchbox" type='text' placeholder='keyword' name='searchbox' onChange={handleChange}></input>
       </form>
       {
-        renderArray.length &&
-        renderArray.map((post, i) => {
-          return (
-            <div className="post-card" key={post.postId}>
-              <Link className='post-link' to={`/post/${i}`}>
-                <h2 className='post-title'>{post.title}</h2>
-                <small>Published on {post.date}</small>
-                <hr></hr>
-                <ReactMarkdown className='post-card-summary'>{post.summary}</ReactMarkdown>
-                <small className="click">Click to read more...</small>
-              </Link>
-            </div>
-          )
-        })
+        renderArray.length > 0 ?
+          renderArray.map((post, i) => {
+            return (
+              <div className="post-card" key={post.postId}>
+                <Link className='post-link' to={`/post/${post.postId}`}>
+                  <h2 className='post-title'>{post.title}</h2>
+                  <small>Published on {post.date}</small>
+                  <hr></hr>
+                  <ReactMarkdown className='post-card-summary'>{post.summary}</ReactMarkdown>
+                  <small className="click">Click to read more...</small>
+                </Link>
+              </div>
+            )
+          })
+          :
+          <h3 className='allposts-message'>No results found</h3>
       }
     </div>
   )

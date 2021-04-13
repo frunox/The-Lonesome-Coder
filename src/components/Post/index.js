@@ -11,7 +11,13 @@ function Post(props) {
   const postArray = usePosts()
   console.log('Post: postArray', postArray)
   // const postIndex = postArray.length
-  const id = parseInt(props.match.params.id)
+  const postIndexId = parseInt(props.match.params.id)
+
+  function findPostId(element) {
+    return element.postId === postIndexId
+  }
+
+  const id = postArray.findIndex(findPostId)
   console.log('id: ', id, 'type', typeof id)
   const maxValidId = postArray[0].postId
   console.log('maxValidId', maxValidId)
