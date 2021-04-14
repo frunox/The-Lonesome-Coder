@@ -35,6 +35,10 @@ let array = posts;
 
 The result? Nothing changed. The problem still showed up on the Posts page. My solution? Review all my code, re-write some of it, review how context works, refactor the context file, grind my teeth, etc., etc, rinse and repeat. Problem fixed? Nope.
 
+> _"You can't make experimental work by copying past work"_
+>
+> Trey Parker
+
 ## Send in the Clones
 
 Somewhere in my research, buried in a StackOverflow post, was the word 'clone'. It took a while for it to sink in that this might be the solution. So I Googled array cloning and there was the answer. Only 1 line of code needed to be changed.

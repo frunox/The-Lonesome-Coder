@@ -79,8 +79,9 @@ function Admin() {
           <button onClick={postStoreHandler}>Store/Update Post</button>
         </div>
         <h3 className='admin-message'>Message: {message}</h3>
+        <code>This is a bunch of code intended to break as the screen size changes at small sizes</code>
         <div className='post-content'>
-          <ReactMarkdown linkTarget={'_blank_'}>{postContent}</ReactMarkdown>
+          <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>{postContent}</ReactMarkdown>
         </div>
       </div>
     </>

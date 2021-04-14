@@ -15,11 +15,17 @@ Bootstrap is one of the first tools I learned to use at boot camp. It seemed eas
 
 I moved on to Semantic-UI and Semantic-UI-React, which are simpler, but there were still issues. They aren't as well documented, and are more limited. And customized the look was still problematic.
 
+> _"Get your boots and stick your toes in. Grab the bootstraps and pull real hard. Is your life better now?"_
+>
+> Me
+
 ## Back to CSS
 
 If I spent more time with any of the CSS tools, I would likely learn to overcome the issues I have with them. The approach I took was to abandon them and learn how to style using plain CSS.
 
 CSS is wordier, but at least I understand what the words mean. I can pretty much achieve whatever I want this way. Of course, this has forced me to learn at lot more about CSS, which is a good thing, since that knowledge can help you even if you are using one of the CSS tools.
+
+![CSS grid](https://i.ibb.co/n33G8rr/grid.jpg)
 
 ## Grid and Flexbox
 

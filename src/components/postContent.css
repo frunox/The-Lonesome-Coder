@@ -22,10 +22,20 @@
   font-family: 'Mulish', sans-serif;
   font-size: 1.5em;
   font-weight: normal;
+  padding-top: 10px;
+}
+
+.post-content h2 {
+  font-family: 'Mulish', sans-serif;
+  font-size: 1.1em;
+  font-weight: 600;
+  text-decoration: underline;
+  text-align: left;
 }
 
 .post-content hr {
-  margin-bottom: 12px;
+  margin-bottom: 18px;
+  color: blue;
 }
 
 .post-content p {
@@ -38,18 +48,11 @@
   margin-top: 10px;
 }
 
-.post-content h2 {
-  font-family: 'Mulish', sans-serif;
-  font-size: 1.1em;
-  font-weight: 600;
-  text-decoration: underline;
-  text-align: left;
-}
-
 .post-content pre {
   margin: 0.5rem 1em;
   padding: 8px;
   background-color: rgb(186, 203, 235);
+  overflow-x: scroll;
 }
 
 .post-content img {
@@ -64,7 +67,7 @@
   margin-bottom: 1em;
   background-color: rgba(255, 208, 0, 0.5);
   border-radius: 5px;
-  padding: 0.5em;
+  padding: 0.5em 1em 0.2em 1em;
   font-size: 1.1em;
 }
 
@@ -72,5 +75,18 @@
   .post-content {
     width: 70%;
     margin: auto;
+  }
+
+  .post-content h1 {
+    font-size: 2.2rem;
+    font-weight: lighter;
+  }
+
+  .post-content h2 {
+    font-size: 1.5rem;
+    text-align: left;
+    margin-bottom: 4px;
+    font-weight: lighter;
+    text-decoration: none;
   }
 }

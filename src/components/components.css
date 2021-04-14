@@ -21,6 +21,7 @@
 
 .home-message {
   margin-left: 15%;
+  margin-bottom: 12px;
   text-align: left;
 }
 
@@ -79,6 +80,11 @@
 .post-link {
   color: black;
   text-decoration: none;
+}
+
+.content hr {
+  margin-bottom: 18px;
+  color: blue;
 }
 
 .allposts-search {
