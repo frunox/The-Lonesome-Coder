@@ -1,7 +1,7 @@
 ---
 postUid: postUid4
 postId: 4
-title: Builing the Blog - Working with Markdown
+title: Building the Blog - Working with Markdown
 date: April 13, 2021
 author: lonesome-coder
 summary: Let's look at the code to see how Markdown files are processed and rendered...
@@ -116,6 +116,10 @@ The Firestore `.get()` method returns a _QuerySnapshot_ object, which contains a
 The, the array of posts is sorted in descending order using the `postId`, a numeric value included in the metadata. This way, the posts are rendered starting with the most recent.
 
 I created a context (_PostContext_) and store the sorted posts array there using `savePosts(posts)`. Now, the array can be accessed from any component. I used it for the Home and Posts pages.
+
+> _“One child, one teacher, one book, one pen can change the world.”_
+>
+> Malala Yousafzai
 
 ## How to Render Markdown in React
 
