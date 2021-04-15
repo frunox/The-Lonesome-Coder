@@ -15,6 +15,7 @@ function Admin() {
   const [message, setMessage] = useState("")
 
   const selectedFileHandler = async (event) => {
+    setMessage("")
     // console.log(event.target.files[0])
     let rawFile = (event.target.files[0])
     let reader = new FileReader()
@@ -64,6 +65,18 @@ function Admin() {
     setMessage('New post saved/updated.')
   }
 
+  // const fileUploadHandler = async (event) => {
+  //   let bucketName = 'images'
+  //   let selectedFile = file
+  //   // console.log('selectedFile ', selectedFile)
+  //   let storageRef = app.storage().ref(`${bucketName}/${selectedFile.name}`)
+  //   await storageRef.put(file)
+  //   // get the URL for the file stored
+  //   const mdFileUrl = await storageRef.getDownloadURL()
+  //   console.log('Image URL: ', mdFileUrl)
+  //   setMData({ ...mData, imageUrl: mdFileUrl })
+  // }
+
   return (
     <>
       <div className='admin-content'>
@@ -79,7 +92,10 @@ function Admin() {
           <button onClick={postStoreHandler}>Store/Update Post</button>
         </div>
         <h3 className='admin-message'>Message: {message}</h3>
-        <code>This is a bunch of code intended to break as the screen size changes at small sizes</code>
+        <h1>{mData.title}</h1>
+        {/* <h3>Author: {postArray[id].author}</h3> */}
+        <small>Published on {mData.date}</small>
+        <hr />
         <div className='post-content'>
           <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>{postContent}</ReactMarkdown>
         </div>

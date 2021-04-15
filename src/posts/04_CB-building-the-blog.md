@@ -9,7 +9,7 @@ keywords: markdown parse-md react-markdown firestore
 filename: 04_CB-building-the-blog.md
 ---
 
-![javascript code](https://i.ibb.co/hfTd8Sp/476208-code-web-development-Java-Script-Computer-screen-pixels-programming-PHP-syntax-highlighting-p.jpg)
+![javascript code](https://drive.google.com/uc?export=view&id=1iNZ_H3PJ05Q6oOHyGgAgOR2GP813_AZ6)
 
 In an earlier post, I discussed why use Markdown to create the posts, how to include metadata, and tools to parse the metadata and render the content to the browser.
 

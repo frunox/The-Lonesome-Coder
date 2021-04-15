@@ -11,7 +11,7 @@ filename: 07_TW-copies-and-clones.md
 
 This is the first of a (unfortunately, pretty lengthy) series of posts about Time Wasters: problems that usually seem complex but often have simple solutions. Solutions that I should know but mostly just forgot.
 
-![clone trooper](https://thumb.sfmlab.com/item-preview/projectfile/967271340_preview_screenshot002_thumb.detail.png)
+![clone troopers](https://drive.google.com/uc?export=view&id=1qIzIrGC5qS4z5Bui_rQqboAwrzyFwg6S)
 
 ## Copying an Array - Good Intentions/Bad Consequences
 

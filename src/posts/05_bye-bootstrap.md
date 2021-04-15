@@ -9,7 +9,7 @@ keywords: CSS bootstrap grid flexbox
 filename: 05_bye-bootstrap.md
 ---
 
-![obscure css](https://i.ibb.co/xGKwG1d/inspector2.png)
+![obscure css](https://drive.google.com/uc?export=view&id=1buZFGzFJXQLKRI3bRJkn8qm6WCLpNXMb)
 
 Bootstrap is one of the first tools I learned to use at boot camp. It seemed easy at first. There were lots of styling options. But, when I wanted to customize the look, I ran into trouble. Modifying the default styling meant wading through some complex class selectors which often wouldn't accept new values. There was a lot of hit-and-miss regarding applying my own styling.
 
@@ -25,7 +25,7 @@ If I spent more time with any of the CSS tools, I would likely learn to overcome
 
 CSS is wordier, but at least I understand what the words mean. I can pretty much achieve whatever I want this way. Of course, this has forced me to learn at lot more about CSS, which is a good thing, since that knowledge can help you even if you are using one of the CSS tools.
 
-![CSS grid](https://i.ibb.co/n33G8rr/grid.jpg)
+![CSS grid](https://drive.google.com/uc?export=view&id=1EDTvDDwltlflDwUgvuIGi60T_OL2z3Sn)
 
 ## Grid and Flexbox
 
@@ -37,7 +37,7 @@ Don't be put off by any titled "Grid versus Flexbox". These are not two competin
 
 ## CSS Variables
 
-Another concept I'm trying to incorporate into my projects are CSS variables, also known as custom properties. They allow you to set a particular property, line background color, as a variable. If that property with that value is used in many places in your CSS, you set them all to the variable name. That way, if you need to change the value in all the places where it is used, you only change the value of the variable. It's similar to using variables in JavaScript. Get a better explanation at [blob.hubspot.com](https://blog.hubspot.com/website/css-variables) or [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+Another concept I'm trying to incorporate into my projects are CSS variables, also known as custom properties. They allow you to set a particular property, line background color, as a variable. If that property with that value is used in many places in your CSS, you set them all to the variable name. That way, if you need to change the value in all the places where it is used, you only change the value of the variable. It's similar to using variables in JavaScript. Get a better explanation at [blob.hubspot.com](https://blog.hubspot.com/website/css-variables), [MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties), or this first of a series of videos by [Kevin Powell](https://www.youtube.com/watch?v=PHO6TBq_auI).
 
 The values of CSS variables can even be [changed in JavaScript](https://www.youtube.com/watch?v=cZ0yt67A7OM), something I haven't tried yet.
 

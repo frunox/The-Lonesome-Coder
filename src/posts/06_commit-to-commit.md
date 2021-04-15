@@ -10,8 +10,7 @@ filename: 06_commit-to-commit.md
 ---
 
 I've done this too many times. I'm coding along, everything is working. I write, save, check the browser. All good. Until it isn't.
-
-![commit early and often](https://i.ibb.co/5jC2kwf/commit-early-blog.png)
+![commit early and often](https://drive.google.com/uc?export=view&id=1DRWgj8vygdG4AV9lABgXLyEy-Mk9HGmQ)
 
 ## Commit to Small Bites
 

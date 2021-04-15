@@ -9,8 +9,7 @@ keywords: markdown parse-md react-markdown firestore
 filename: 02_CB-use-markdown.md
 ---
 
-![markdown logo](https://i.ibb.co/2Sq1PD9/markdown-mark.png)
-
+![markdown logo](https://drive.google.com/uc?export=view&id=17leorH-v9eOjpn0kXhp2B3GP_Lm9Wrhx)
 One of the first topics I researched when building the blog was how to create the blog posts. Writing HTML or JSX is clumsy, and I like simple.
 
 It became clear that Markdown was the way to go. It's used in writing _readme.md_ files that you store with your repositories. There are special characters that are used to format Markdown, but they are easier to type than tags. [Here](https://commonmark.org/help/) is a cheatsheet to help you get started.

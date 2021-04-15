@@ -20,8 +20,8 @@ But what if you want hear from others like you, and not get bogged down in conte
 
 Let's try not be feel like this:
 
-![frustrated coder](https://i.ibb.co/1Mbzys8/computer-user-frustrated.jpg)
+![frustrated coder](https://drive.google.com/uc?export=view&id=1WPaOSB_o7NLoN27_uDPfk1egMqeK1Pil)
 
 We can try for more of this:
 
-![satisfaction](https://i.ibb.co/RTD8h2X/Pop-art-man-pointing-finger-with-speech-bubble-awesome-Halftone-background.jpg)
+![satisfaction](https://drive.google.com/uc?export=view&id=1TYk3tIOp7jjvkAQpDr3xtOW8bhMNraCt)
