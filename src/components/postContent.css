@@ -46,6 +46,7 @@
   width: 100%;
   height: auto;
   margin-top: 10px;
+  border-radius: 10px;
 }
 
 .post-content pre {
