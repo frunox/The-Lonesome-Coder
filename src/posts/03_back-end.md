@@ -9,7 +9,7 @@ keywords: firebase firestore cloud storage
 filename: 03_back-end.md
 ---
 
-![back end as a service](https://drive.google.com/uc?export=view&id=1RlljaT4Xno1L5DpwF55NRWY71ORCMo_m)
+![back end as a service]()
 
 In considering how to create this blog project, I stuck with familiar for the front end: Reactjs, JavaScript, and a few additional packages.
 

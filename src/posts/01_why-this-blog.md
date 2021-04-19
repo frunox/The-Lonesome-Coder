@@ -7,6 +7,8 @@ author: lonesome-coder
 summary: What is this blog about?...
 keywords: general blog
 filename: 01_why-this-blog.md
+imageUrl: []
+imageName: []
 ---
 
 ## Why Read This Blog
@@ -20,8 +22,8 @@ But what if you want hear from others like you, and not get bogged down in conte
 
 Let's try not be feel like this:
 
-![frustrated coder](https://drive.google.com/uc?export=view&id=1WPaOSB_o7NLoN27_uDPfk1egMqeK1Pil)
+![frustrated coder]()
 
 We can try for more of this:
 
-![satisfaction](https://drive.google.com/uc?export=view&id=1TYk3tIOp7jjvkAQpDr3xtOW8bhMNraCt)
+![satisfaction]()

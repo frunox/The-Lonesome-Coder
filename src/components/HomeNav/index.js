@@ -6,14 +6,14 @@ import './HomeNav.css';
 const HomeNav = (props) => {
   const { currentUser } = useAuth();
   const admin = process.env.REACT_APP_ADMIN_EMAIL;
-  console.log(
-    'admin email',
-    admin,
-    currentUser.email,
-    typeof admin,
-    typeof currentUser.email,
-    currentUser.email === admin
-  );
+  // console.log(
+  //   'admin email',
+  //   admin,
+  //   currentUser.email,
+  //   typeof admin,
+  //   typeof currentUser.email,
+  //   currentUser.email === admin
+  // );
 
   return (
     <header className="navbar-header">

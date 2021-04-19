@@ -10,7 +10,7 @@ filename: 02_CB-use-markdown.md
 imageUrl: null
 ---
 
-![markdown logo](https://firebasestorage.googleapis.com/v0/b/the-lonesome-coder-dev.appspot.com/o/images%2Fmarkdown-mark.png?alt=media&token=8a01c46c-df9f-47a3-9f95-f21d5cfb7468)
+![markdown logo]()
 One of the first topics I researched when building the blog was how to create the blog posts. Writing HTML or JSX is clumsy, and I like simple.
 
 It became clear that Markdown was the way to go. It's used in writing _readme.md_ files that you store with your repositories. There are special characters that are used to format Markdown, but they are easier to type than tags. [Here](https://commonmark.org/help/) is a cheatsheet to help you get started.
