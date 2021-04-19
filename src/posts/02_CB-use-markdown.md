@@ -7,7 +7,8 @@ author: lonesome-coder
 summary: Markdown is the simplest way to add content to a website. There are a couple of tool that are needed to used in a React project...
 keywords: markdown parse-md react-markdown firestore
 filename: 02_CB-use-markdown.md
-imageUrl: null
+imageUrl: []
+imageName: []
 ---
 
 ![markdown logo]()

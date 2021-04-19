@@ -97,9 +97,10 @@ function Admin() {
     console.log('Image URL: ', imageFileUrl);
     // console.log('mData', mData);
     setMData({ ...mData, imageUrl: urls, imageName: names });
-    if (imageCount <= numberOfImages) {
+    if (imageCount < numberOfImages) {
       setImageCount((prevImageCount) => prevImageCount + 1);
     }
+    setMessage('Image File ' + imageCount + ' saved');
   };
 
   const addLinksHandler = () => {
@@ -132,6 +133,12 @@ function Admin() {
         setMessage('Firebase save post error. ' + err);
       });
     setMessage('New post saved/updated.');
+    setMData('');
+    setMarkdownFile('');
+    setUrlsArray([]);
+    setImageIndices([]);
+    setImageCount(0);
+    setNumberOfImages(0);
   };
 
   const previewImageHandler = async () => {
@@ -166,7 +173,7 @@ function Admin() {
 
         <div className="admin-metadata">
           <h3>Add Image Link(s) Post</h3>
-          <button onClick={addLinksHandler}>Add Link(s)</button>
+          <button onClick={addLinksHandler}>Add Link(s) and Preview</button>
         </div>
 
         <div className="admin-metadata">

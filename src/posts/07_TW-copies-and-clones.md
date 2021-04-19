@@ -7,11 +7,13 @@ author: lonesome-coder
 summary: Did you forget to clone your array?  I did, and spent hours trying to fix a bug that propogated in unexpected ways...
 keywords: javascript clone deep-copy
 filename: 07_TW-copies-and-clones.md
+imageUrl: []
+imageName: []
 ---
 
 This is the first of a (unfortunately, pretty lengthy) series of posts about Time Wasters: problems that usually seem complex but often have simple solutions. Solutions that I should know but mostly just forgot.
 
-![clone troopers](https://drive.google.com/uc?export=view&id=1qIzIrGC5qS4z5Bui_rQqboAwrzyFwg6S)
+![clone troopers]()
 
 ## Copying an Array - Good Intentions/Bad Consequences
 

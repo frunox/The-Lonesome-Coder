@@ -7,9 +7,11 @@ author: lonesome-coder
 summary: Let's look at the code to see how Markdown files are processed and rendered...
 keywords: markdown parse-md react-markdown firestore
 filename: 04_CB-building-the-blog.md
+imageUrl: []
+imageName: []
 ---
 
-![javascript code](https://drive.google.com/uc?export=view&id=1iNZ_H3PJ05Q6oOHyGgAgOR2GP813_AZ6)
+![javascript code]()
 
 In an earlier post, I discussed why use Markdown to create the posts, how to include metadata, and tools to parse the metadata and render the content to the browser.
 

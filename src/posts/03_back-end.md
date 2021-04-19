@@ -7,6 +7,8 @@ author: lonesome-coder
 summary: How did I decide what back end to use
 keywords: firebase firestore cloud storage
 filename: 03_back-end.md
+imageUrl: []
+imageName: []
 ---
 
 ![back end as a service]()

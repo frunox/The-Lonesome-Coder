@@ -7,10 +7,12 @@ author: lonesome-coder
 summary: Ever get on a roll, when an error arises, and you find yourself undoing working code. You need to commit to commit...
 keywords: CSS
 filename: 06_commit-to-commit.md
+imageUrl: []
+imageName: []
 ---
 
 I've done this too many times. I'm coding along, everything is working. I write, save, check the browser. All good. Until it isn't.
-![commit early and often](https://drive.google.com/uc?export=view&id=1DRWgj8vygdG4AV9lABgXLyEy-Mk9HGmQ)
+![commit early and often]()
 
 ## Commit to Small Bites
 
