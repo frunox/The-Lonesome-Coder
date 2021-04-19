@@ -36,25 +36,24 @@ function Admin() {
   const selectedImageHandler = (event) => {
     setMessage('');
     setImgUrl('');
-    console.log('selectedImageHandler: ', event.target.files[0].name);
+    // console.log('selectedImageHandler: ', event.target.files[0].name);
     let rawFile = event.target.files[0];
-    console.log('raw image file', rawFile);
+    // console.log('raw image file', rawFile);
     setImageFile(rawFile);
   };
-
-  // const postUidArray = []
 
   const parseHandler = () => {
     // use parse-md to capture the metadata in the 'metadata' variable and content in the 'content' variable
     const { metadata, content } = parseMD(markdownFile);
     setMData(metadata);
     setPostContent(content);
-    console.log('parseHandler: ', metadata);
+    // console.log('parseHandler: ', metadata);
     // remove metadata from .md file
     // split the post file into an array of lines
     const linesArray = markdownFile.split('\n');
     linesArray.splice(0, 11);
     let contentString = linesArray.join('\n');
+    // console.log('post string', contentString);
     setPostContent(contentString);
     postUids.push(metadata.postUid);
     setPostUids(postUids);
@@ -65,7 +64,7 @@ function Admin() {
     setMessage('');
     let bucketName = 'images';
     let selectedImage = imageFile;
-    console.log('imageStorageHandler image file', selectedImage);
+    // console.log('imageStorageHandler image file', selectedImage);
     // console.log('selectedFile ', selectedFile)
     let storageRef = app.storage().ref(`${bucketName}/${selectedImage.name}`);
     await storageRef.put(selectedImage).catch((err) => {
@@ -75,19 +74,28 @@ function Admin() {
     // get the URL for the file stored
     const imageFileUrl = await storageRef.getDownloadURL();
     console.log('Image URL: ', imageFileUrl);
-    console.log('mData', mData);
+    // console.log('mData', mData);
     setMData({ ...mData, imageUrl: imageFileUrl });
-    // const metaData = mData;
-    // console.log('metaData', metaData, typeof metaData);
-    // metaData.imageUrl = imageFileUrl;
-    // console.log('metaData w/ Url', metaData);
-    // setMData(metaData);
-    // setMessage('Image file stored');
+    let linesArray = postContent.split('\n');
+    console.log('linesArray', linesArray[1][0]);
+    let imageIndex;
+    for (let i = 0; i < linesArray.length; i++) {
+      // console.log(linesArray[i]);
+      if (linesArray[i][0] === '!') {
+        imageIndex = i;
+      }
+    }
+    let newLine = linesArray[imageIndex].replace(')', imageFileUrl + ')');
+    console.log('image line number', imageIndex, newLine);
+    linesArray[imageIndex] = newLine;
+    let contentString = linesArray.join('\n');
+    // console.log('post string', contentString);
+    setPostContent(contentString);
   };
 
   const postStoreHandler = () => {
     setMessage('');
-    console.log('postStoreHandler mData', mData);
+    // console.log('postStoreHandler mData', mData);
     const postObject = mData;
     postObject.content = postContent;
     const storageRef = db.collection('metadata');
@@ -105,10 +113,10 @@ function Admin() {
   const previewImageHandler = async () => {
     setMessage('');
     setPostContent('');
-    console.log('previewImageHandler: postUid', mData.postUid, mData.imageUrl);
+    // console.log('previewImageHandler: postUid', mData.postUid, mData.imageUrl);
     const snapshot = await db.collection('metadata').doc(mData.postUid).get();
     const data = snapshot.data();
-    console.log('previewImageHandler data', data.imageUrl);
+    // console.log('previewImageHandler data', data.imageUrl);
     setImgUrl(data.imageUrl);
   };
 
