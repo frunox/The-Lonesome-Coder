@@ -12,10 +12,13 @@ function Admin() {
   const [mData, setMData] = useState('');
   const [markdownFile, setMarkdownFile] = useState('');
   const [postContent, setPostContent] = useState('');
-  const [postUids, setPostUids] = useState([]);
   const [imageFile, setImageFile] = useState('');
   const [message, setMessage] = useState('');
-  const [imgUrl, setImgUrl] = useState('');
+  const [imageName, setImageName] = useState([]);
+  const [urlsArray, setUrlsArray] = useState([]);
+  const [imageIndices, setImageIndices] = useState([]);
+  const [imageCount, setImageCount] = useState(0);
+  const [numberOfImages, setNumberOfImages] = useState(0);
 
   const selectedFileHandler = (event) => {
     setMessage('');
@@ -35,7 +38,6 @@ function Admin() {
 
   const selectedImageHandler = (event) => {
     setMessage('');
-    setImgUrl('');
     // console.log('selectedImageHandler: ', event.target.files[0].name);
     let rawFile = event.target.files[0];
     // console.log('raw image file', rawFile);
@@ -51,13 +53,23 @@ function Admin() {
     // remove metadata from .md file
     // split the post file into an array of lines
     const linesArray = markdownFile.split('\n');
-    linesArray.splice(0, 11);
+    linesArray.splice(0, 12);
+    let imageIndex = [];
+    for (let i = 0; i < linesArray.length; i++) {
+      // console.log(linesArray[i]);
+      if (linesArray[i][0] === '!') {
+        imageIndex.push(i);
+      }
+    }
+    console.log('imageIndex array', imageIndex);
+    if (imageIndex.length > 0) {
+      setImageCount(1);
+      setNumberOfImages(imageIndex.length);
+    }
+    setImageIndices(imageIndex);
     let contentString = linesArray.join('\n');
     // console.log('post string', contentString);
     setPostContent(contentString);
-    postUids.push(metadata.postUid);
-    setPostUids(postUids);
-    // console.log(postUids);
   };
 
   const imageStorageHandler = async (event) => {
@@ -66,6 +78,12 @@ function Admin() {
     let selectedImage = imageFile;
     // console.log('imageStorageHandler image file', selectedImage);
     // console.log('selectedFile ', selectedFile)
+    let urls = urlsArray;
+    let names = imageName;
+    console.log('urls:', urlsArray, 'names:', imageName);
+    names.push(selectedImage.name);
+    console.log('imageStorageHandler names', names, typeof names);
+    setImageName(names);
     let storageRef = app.storage().ref(`${bucketName}/${selectedImage.name}`);
     await storageRef.put(selectedImage).catch((err) => {
       console.log(err);
@@ -73,21 +91,27 @@ function Admin() {
     });
     // get the URL for the file stored
     const imageFileUrl = await storageRef.getDownloadURL();
+    urls.push(imageFileUrl);
+    console.log('urls after push:', urls);
+    setUrlsArray(urls);
     console.log('Image URL: ', imageFileUrl);
     // console.log('mData', mData);
-    setMData({ ...mData, imageUrl: imageFileUrl });
-    let linesArray = postContent.split('\n');
-    console.log('linesArray', linesArray[1][0]);
-    let imageIndex;
-    for (let i = 0; i < linesArray.length; i++) {
-      // console.log(linesArray[i]);
-      if (linesArray[i][0] === '!') {
-        imageIndex = i;
-      }
+    setMData({ ...mData, imageUrl: urls, imageName: names });
+    if (imageCount <= numberOfImages) {
+      setImageCount((prevImageCount) => prevImageCount + 1);
     }
-    let newLine = linesArray[imageIndex].replace(')', imageFileUrl + ')');
-    console.log('image line number', imageIndex, newLine);
-    linesArray[imageIndex] = newLine;
+  };
+
+  const addLinksHandler = () => {
+    console.log('updatePostHandler mData', mData);
+    let linesArray = postContent.split('\n');
+    for (let i = 0; i < imageIndices.length; i++) {
+      let newLine = linesArray[imageIndices[i]].replace(
+        ')',
+        urlsArray[i] + ')'
+      );
+      linesArray[imageIndices[i]] = newLine;
+    }
     let contentString = linesArray.join('\n');
     // console.log('post string', contentString);
     setPostContent(contentString);
@@ -117,7 +141,7 @@ function Admin() {
     const snapshot = await db.collection('metadata').doc(mData.postUid).get();
     const data = snapshot.data();
     // console.log('previewImageHandler data', data.imageUrl);
-    setImgUrl(data.imageUrl);
+    setUrlsArray(data.imageUrl);
   };
 
   return (
@@ -125,7 +149,7 @@ function Admin() {
       <div className="admin-content">
         <h2>Admin Page</h2>
         <div className="admin-parse">
-          <h4>Choose Markdown File to Parse:</h4>
+          <h3>Select Markdown File to Parse:</h3>
           <input type="file" onChange={selectedFileHandler} />
           <button onClick={parseHandler}>
             Parse Metadata and Preview File
@@ -133,18 +157,25 @@ function Admin() {
         </div>
 
         <div className="admin-parse">
-          <h4>Choose Image File to Add:</h4>
+          <h3>
+            Select Image File {imageCount} of {numberOfImages} to Add:
+          </h3>
           <input type="file" onChange={selectedImageHandler} />
           <button onClick={imageStorageHandler}>Save Image File</button>
         </div>
 
         <div className="admin-metadata">
-          <h4>Store Post to Firestore</h4>
+          <h3>Add Image Link(s) Post</h3>
+          <button onClick={addLinksHandler}>Add Link(s)</button>
+        </div>
+
+        <div className="admin-metadata">
+          <h3>Store Post to Firestore</h3>
           <button onClick={postStoreHandler}>Store/Update Post</button>
         </div>
 
         <div className="admin-metadata">
-          <h4>Preview Image</h4>
+          <h3>Preview Image</h3>
           <button onClick={previewImageHandler}>Retrieve Image</button>
         </div>
 
@@ -153,7 +184,6 @@ function Admin() {
         {/* <h3>Author: {postArray[id].author}</h3> */}
         <small>Published on {mData.date}</small>
         <hr />
-        <img src={imgUrl} alt="" />
         <div className="post-content">
           <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
             {postContent}
