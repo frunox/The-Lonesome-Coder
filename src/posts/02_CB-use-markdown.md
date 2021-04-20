@@ -4,7 +4,7 @@ postId: 2
 title: Markdown! (Not a Sales Pitch)
 date: April 8, 2021
 author: lonesome-coder
-summary: Markdown is the simplest way to add content to a website. There are a couple of tool that are needed to used in a React project...
+summary: Markdown is the simplest way to add content to a website. There are a couple of tools that are needed to used in a React project...
 keywords: markdown parse-md react-markdown firestore
 filename: 02_CB-use-markdown.md
 imageUrl: []
