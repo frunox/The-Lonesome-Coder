@@ -4,7 +4,7 @@ postId: 2
 title: Markdown! (Not a Sales Pitch)
 date: April 8, 2021
 author: lonesome-coder
-summary: Markdown is the simplest way to add content to a website. There are a couple of tools that are needed to used in a React project...
+summary: Markdown is the simplest format to use to add content to a website. There are a couple of tools that are needed to use Markdown files in a React project...
 keywords: markdown parse-md react-markdown firestore
 filename: 02_CB-use-markdown.md
 imageUrl: []
@@ -12,6 +12,7 @@ imageName: []
 ---
 
 ![markdown logo]()
+
 One of the first topics I researched when building the blog was how to create the blog posts. Writing HTML or JSX is clumsy, and I like simple.
 
 It became clear that Markdown was the way to go. It's used in writing _readme.md_ files that you store with your repositories. There are special characters that are used to format Markdown, but they are easier to type than tags. [Here](https://commonmark.org/help/) is a cheatsheet to help you get started.

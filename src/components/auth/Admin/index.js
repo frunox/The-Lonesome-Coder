@@ -3,6 +3,7 @@ import app from '../../../firebase';
 import ReactMarkdown from 'react-markdown';
 // import gfm from 'remark-gfm'
 // import Markdown from 'markdown-to-jsx'
+import './Admin.css';
 import '../../postContent.css';
 const parseMD = require('parse-md').default;
 
@@ -141,60 +142,116 @@ function Admin() {
     setNumberOfImages(0);
   };
 
-  const previewImageHandler = async () => {
+  const updatePostTextHandler = async () => {
     setMessage('');
     setPostContent('');
-    // console.log('previewImageHandler: postUid', mData.postUid, mData.imageUrl);
-    const snapshot = await db.collection('metadata').doc(mData.postUid).get();
-    const data = snapshot.data();
-    // console.log('previewImageHandler data', data.imageUrl);
-    setUrlsArray(data.imageUrl);
+    const { metadata, content } = parseMD(markdownFile);
+    console.log('metadata postUid: ', metadata.postUid);
+    let docUid = metadata.postUid;
+    let docRef = db.collection('metadata').doc(docUid);
+    let urls = '';
+    await docRef
+      .get()
+      .then((doc) => {
+        console.log('Document from Firestore', doc.data());
+        urls = doc.data().imageUrl;
+      })
+      .catch((error) => {
+        console.log('No document exists');
+        setMessage('Firebase .get() failed for document ' + metadata.postUid);
+      });
+    console.log('Original image urls: ', urls);
+    const contentLinesArray = content.split('\n');
+    let imageIndex = [];
+    for (let i = 0; i < contentLinesArray.length; i++) {
+      // console.log(linesArray[i]);
+      if (contentLinesArray[i][0] === '!') {
+        imageIndex.push(i);
+      }
+    }
+    console.log('imageIndex: ', imageIndex);
+    for (let i = 0; i < imageIndex.length; i++) {
+      let newLine = contentLinesArray[imageIndex[i]].replace(
+        ')',
+        urls[i] + ')'
+      );
+      contentLinesArray[imageIndex[i]] = newLine;
+    }
+    let contentString = contentLinesArray.join('\n');
+    metadata.content = contentString;
+    const storageRef = db.collection('metadata');
+    // console.log('storageRef', storageRef)
+    storageRef
+      .doc(metadata.postUid)
+      .set(metadata)
+      .catch((err) => {
+        console.log(err);
+        setMessage('Firebase save post error. ' + err);
+      });
+    setMessage(metadata.postUid + ' text updated.');
+    setPostContent(contentString);
   };
 
   return (
     <>
       <div className="admin-content">
-        <h2>Admin Page</h2>
-        <div className="admin-parse">
-          <h3>Select Markdown File to Parse:</h3>
-          <input type="file" onChange={selectedFileHandler} />
-          <button onClick={parseHandler}>
-            Parse Metadata and Preview File
-          </button>
-        </div>
+        <h2 className="admin-title">Admin Page</h2>
+        <hr></hr>
+        <div className="admin-grid">
+          <div className="col-1">
+            <p className="admin-column-title">Full Post Processing Sequence</p>
+            <div>
+              <h3>1) Select Markdown File to Parse:</h3>
+              <input type="file" onChange={selectedFileHandler} />
+              <button onClick={parseHandler}>
+                Parse Metadata and Preview File
+              </button>
+            </div>
 
-        <div className="admin-parse">
-          <h3>
-            Select Image File {imageCount} of {numberOfImages} to Add:
-          </h3>
-          <input type="file" onChange={selectedImageHandler} />
-          <button onClick={imageStorageHandler}>Save Image File</button>
-        </div>
+            <div>
+              <h3>
+                2) Select Image File {imageCount} of {numberOfImages} to Add:
+              </h3>
+              <input type="file" onChange={selectedImageHandler} />
+              <button onClick={imageStorageHandler}>Save Image File</button>
+            </div>
 
-        <div className="admin-metadata">
-          <h3>Add Image Link(s) Post</h3>
-          <button onClick={addLinksHandler}>Add Link(s) and Preview</button>
-        </div>
+            <div>
+              <h3>3) Add Image Link(s) Post:</h3>
+              <button onClick={addLinksHandler}>Add Link(s) and Preview</button>
+            </div>
 
-        <div className="admin-metadata">
-          <h3>Store Post to Firestore</h3>
-          <button onClick={postStoreHandler}>Store/Update Post</button>
-        </div>
+            <div>
+              <h3>4) Store Post to Firestore:</h3>
+              <button onClick={postStoreHandler}>Store/Update Post</button>
+            </div>
+            <hr />
 
-        <div className="admin-metadata">
-          <h3>Preview Image</h3>
-          <button onClick={previewImageHandler}>Retrieve Image</button>
-        </div>
+            <div>
+              <p className="admin-column-title">
+                Update Post w/ Text Revisions
+              </p>
+              <h3>Select Post w/ Revisions:</h3>
+              <input type="file" onChange={selectedFileHandler} />
+              <button onClick={updatePostTextHandler}>Update Post Text</button>
+            </div>
+            <hr />
+            {message && <h3>Message: {message}</h3>}
+          </div>
 
-        <h3 className="admin-message">Message: {message}</h3>
-        <h1>{mData.title}</h1>
-        {/* <h3>Author: {postArray[id].author}</h3> */}
-        <small>Published on {mData.date}</small>
-        <hr />
-        <div className="post-content">
-          <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
-            {postContent}
-          </ReactMarkdown>
+          <div className="col-2">
+            <p className="admin-column-title">Preview</p>
+            <div className="post-content">
+              <h1>{mData.title}</h1>
+              {postContent && <small>Published on {mData.date}</small>}
+              {postContent && <hr />}
+              <div className="post-content">
+                <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
+                  {postContent}
+                </ReactMarkdown>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
