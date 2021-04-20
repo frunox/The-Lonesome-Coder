@@ -113,7 +113,7 @@ useEffect(() => {
 }, []);
 ```
 
-The Firestore `.get()` method returns a _QuerySnapshot_ object, which contains a _DocumentSnapshot_ for each document retured. The `.map()` method is used to create an array of objects, each of which contains the object with the metadata and content for that post.
+The Firestore `.get()` method returns a _QuerySnapshot_ object, which contains a _DocumentSnapshot_ for each document returned. The `.map()` method is used to create an array of objects, each of which contains the object with the metadata and content for that post.
 
 The, the array of posts is sorted in descending order using the `postId`, a numeric value included in the metadata. This way, the posts are rendered starting with the most recent.
 

@@ -4,7 +4,7 @@ postId: 7
 title: Time Waster - Copies and Clones, Oh, My!
 date: April 10, 2021
 author: lonesome-coder
-summary: Did you forget to clone your array?  I did, and spent hours trying to fix a bug that propogated in unexpected ways...
+summary: Did you forget to clone your array?  I did, and spent hours trying to fix a bug that propagated in unexpected ways...
 keywords: javascript clone deep-copy
 filename: 07_TW-copies-and-clones.md
 imageUrl: []
@@ -17,7 +17,7 @@ This is the first of a (unfortunately, pretty lengthy) series of posts about Tim
 
 ## Copying an Array - Good Intentions/Bad Consequences
 
-Early in development of this blog, I stored the metadata for the posts in Firestore. In the home page, I only want to render the 3 most recent posts. On the Posts page, I want to render all the posts. The home page uses a component that downloads the metadata for all the posts, which is in the form of an array of objects. The array is sorted in descending order (so the most recent post is rendered first) and is saved both to a state variable in the component, and to a context variable for acces by the Posts page.
+Early in development of this blog, I stored the metadata for the posts in Firestore. In the home page, I only want to render the 3 most recent posts. On the Posts page, I want to render all the posts. The home page uses a component that downloads the metadata for all the posts, which is in the form of an array of objects. The array is sorted in descending order (so the most recent post is rendered first) and is saved both to a state variable in the component, and to a context variable for access by the Posts page.
 
 The component for the home page checks the length of the array (called 'posts') and uses the splice() method to remove all but the latest three posts.
 
@@ -53,7 +53,7 @@ Now three posts are rendered on the home page, and all the posts are rendered on
 
 What I had forgotten was that arrays (which are objects) are different from primitive data types. Primitives (numbers, strings, booleans, etc.) have a name and a value. When copied, the new name is associated with it's own value, which is equal to the value of the original primitive. But, when the value of the copy is changed, the value of the original remains unchanged.
 
-Objects (which includes arrays, sets, maps, dates, etc.) are 'structural' types. Unlike primitives, whose forms are built into Javascript, we define the forms of objects we declare. The each have a name, but that name is associated with references (memory addresses) where the values are stored. When you copy an object using the assignment operator (=), a new name is created, but the references are the same as for the original object. When you change a value in either the original or the copy, the new value is reflected in both, since they both point to the same memory addresses.
+Objects (which includes arrays, sets, maps, dates, etc.) are 'structural' types. Unlike primitives, whose forms are built into JavaScript, we define the forms of objects we declare. The each have a name, but that name is associated with references (memory addresses) where the values are stored. When you copy an object using the assignment operator (=), a new name is created, but the references are the same as for the original object. When you change a value in either the original or the copy, the new value is reflected in both, since they both point to the same memory addresses.
 
 To create an entirely new object, with new references, you have to 'clone' the original. Then, changes in the value in the original or the copy are only reflected in that object, not both.
 

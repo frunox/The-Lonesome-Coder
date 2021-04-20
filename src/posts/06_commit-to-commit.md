@@ -12,6 +12,7 @@ imageName: []
 ---
 
 I've done this too many times. I'm coding along, everything is working. I write, save, check the browser. All good. Until it isn't.
+
 ![commit early and often]()
 
 ## Commit to Small Bites
