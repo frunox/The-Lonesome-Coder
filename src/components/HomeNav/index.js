@@ -6,14 +6,6 @@ import './HomeNav.css';
 const HomeNav = (props) => {
   const { currentUser } = useAuth();
   const admin = process.env.REACT_APP_ADMIN_EMAIL;
-  // console.log(
-  //   'admin email',
-  //   admin,
-  //   currentUser.email,
-  //   typeof admin,
-  //   typeof currentUser.email,
-  //   currentUser.email === admin
-  // );
 
   return (
     <header className="navbar-header">
@@ -49,19 +41,19 @@ const HomeNav = (props) => {
               <Link to="/admin">Admin</Link>
             </li>
           )}
-          {currentUser && (
+          {/* {currentUser && (
             <li>
               <Link to="/profile">Profile</Link>
             </li>
-          )}
+          )} */}
           {!currentUser && (
             <>
               <li>
                 <Link to="/login">Log In</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/signup">Sign Up</Link>
-              </li>
+              </li> */}
             </>
           )}
         </ul>
