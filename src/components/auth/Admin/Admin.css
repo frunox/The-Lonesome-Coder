@@ -9,3 +9,22 @@
 .admin-content h2 {
   text-align: center;
 }
+
+.admin-content h3 {
+  font-weight: 400;
+}
+
+.admin-content p {
+  font-size: 1.5rem;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+.admin-content input {
+  background-color: lightgreen;
+}
+
+.admin-content button {
+  background-color: lightblue;
+  font-weight: 400;
+}
