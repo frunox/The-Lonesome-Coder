@@ -195,53 +195,63 @@ function Admin() {
   return (
     <>
       <div className="admin-content">
-        <h2>Admin Page</h2>
+        <h2 className="admin-title">Admin Page</h2>
         <hr></hr>
-        <p>Full Post Processing Sequence</p>
-        <div>
-          <h3>1) Select Markdown File to Parse:</h3>
-          <input type="file" onChange={selectedFileHandler} />
-          <button onClick={parseHandler}>
-            Parse Metadata and Preview File
-          </button>
-        </div>
+        <div className="admin-grid">
+          <div className="col-1">
+            <p className="admin-column-title">Full Post Processing Sequence</p>
+            <div>
+              <h3>1) Select Markdown File to Parse:</h3>
+              <input type="file" onChange={selectedFileHandler} />
+              <button onClick={parseHandler}>
+                Parse Metadata and Preview File
+              </button>
+            </div>
 
-        <div>
-          <h3>
-            2) Select Image File {imageCount} of {numberOfImages} to Add:
-          </h3>
-          <input type="file" onChange={selectedImageHandler} />
-          <button onClick={imageStorageHandler}>Save Image File</button>
-        </div>
+            <div>
+              <h3>
+                2) Select Image File {imageCount} of {numberOfImages} to Add:
+              </h3>
+              <input type="file" onChange={selectedImageHandler} />
+              <button onClick={imageStorageHandler}>Save Image File</button>
+            </div>
 
-        <div>
-          <h3>3) Add Image Link(s) Post:</h3>
-          <button onClick={addLinksHandler}>Add Link(s) and Preview</button>
-        </div>
+            <div>
+              <h3>3) Add Image Link(s) Post:</h3>
+              <button onClick={addLinksHandler}>Add Link(s) and Preview</button>
+            </div>
 
-        <div>
-          <h3>4) Store Post to Firestore:</h3>
-          <button onClick={postStoreHandler}>Store/Update Post</button>
-        </div>
-        <hr />
+            <div>
+              <h3>4) Store Post to Firestore:</h3>
+              <button onClick={postStoreHandler}>Store/Update Post</button>
+            </div>
+            <hr />
 
-        <div>
-          <p>Update Post w/ Text Revisions</p>
-          <h3>Select Post w/ Revisions:</h3>
-          <input type="file" onChange={selectedFileHandler} />
-          <button onClick={updatePostTextHandler}>Update Post Text</button>
-        </div>
+            <div>
+              <p className="admin-column-title">
+                Update Post w/ Text Revisions
+              </p>
+              <h3>Select Post w/ Revisions:</h3>
+              <input type="file" onChange={selectedFileHandler} />
+              <button onClick={updatePostTextHandler}>Update Post Text</button>
+            </div>
+            <hr />
+            {message && <h3>Message: {message}</h3>}
+          </div>
 
-        {message && <h3>Message: {message}</h3>}
-
-        <h1>{mData.title}</h1>
-        {/* <h3>Author: {postArray[id].author}</h3> */}
-        <small>Published on {mData.date}</small>
-        <hr />
-        <div className="post-content">
-          <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
-            {postContent}
-          </ReactMarkdown>
+          <div className="col-2">
+            <p className="admin-column-title">Preview</p>
+            <div className="post-content">
+              <h1>{mData.title}</h1>
+              {postContent && <small>Published on {mData.date}</small>}
+              {postContent && <hr />}
+              <div className="post-content">
+                <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
+                  {postContent}
+                </ReactMarkdown>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </>
