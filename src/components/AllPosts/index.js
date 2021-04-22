@@ -33,7 +33,10 @@ function AllPosts() {
     for (let i = 0; i < postArray.length; i++) {
       // console.log('in loop')
       if (
-        postArray[i].keywords.toLowerCase().includes(searchString.toLowerCase())
+        postArray[i].keywords
+          .toLowerCase()
+          .includes(searchString.toLowerCase()) |
+        postArray[i].title.toLowerCase().includes(searchString.toLowerCase())
       ) {
         searchArray.push(postArray[i]);
         console.log(
@@ -49,7 +52,7 @@ function AllPosts() {
   return (
     <div className="content">
       <form className="allposts-search" onSubmit={(e) => searchHandler(e)}>
-        <label htmlFor="searchbox">Search Posts by Keyword: </label>
+        <label htmlFor="searchbox">Search Posts by Keyword/Title: </label>
         <input
           className="allposts-searchbox"
           type="text"
@@ -104,6 +107,24 @@ function AllPosts() {
           onClick={handleChange}
         >
           JavaScript
+        </button>
+        <button
+          className="allposts-keyword"
+          type="text"
+          name="searchbox"
+          value="building"
+          onClick={handleChange}
+        >
+          Building-the-Blog
+        </button>
+        <button
+          className="allposts-keyword"
+          type="text"
+          name="searchbox"
+          value="waster"
+          onClick={handleChange}
+        >
+          Time-Waster
         </button>
       </form>
       {renderArray.length > 0 ? (
