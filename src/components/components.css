@@ -21,6 +21,10 @@
   font-size: 1.2rem;
 }
 
+form button {
+  font-size: 0.8rem;
+}
+
 .home-headline {
   font-size: 22px;
   text-transform: uppercase;
@@ -144,6 +148,10 @@
 @media screen and (min-width: 800px) {
   .content {
     width: 70%;
+  }
+
+  form button {
+    font-size: 1rem;
   }
 
   .postlist {
