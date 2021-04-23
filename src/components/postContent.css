@@ -7,14 +7,12 @@
 }
 
 .post-content h1 {
-  font-family: 'Mulish', sans-serif;
   font-size: 1.5em;
   font-weight: normal;
   padding-top: 10px;
 }
 
 .post-content h2 {
-  font-family: 'Mulish', sans-serif;
   font-size: 1.1em;
   font-weight: 600;
   text-decoration: underline;
@@ -37,6 +35,11 @@
   padding: 0 10%;
   margin-top: 10px auto;
   border-radius: 10px;
+}
+
+.post-content code {
+  background-color: rgb(186, 203, 235);
+  padding: 0 4px;
 }
 
 .post-content pre {
@@ -64,14 +67,12 @@
 
   .post-content h1 {
     font-size: 2.2rem;
-    font-weight: lighter;
   }
 
   .post-content h2 {
     font-size: 1.5rem;
     text-align: left;
     margin-bottom: 4px;
-    font-weight: lighter;
     text-decoration: none;
   }
 }
