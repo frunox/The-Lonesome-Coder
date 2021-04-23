@@ -52,7 +52,9 @@ function AllPosts() {
   return (
     <div className="content">
       <form className="allposts-search" onSubmit={(e) => searchHandler(e)}>
-        <label htmlFor="searchbox">Search Posts by Keyword/Title: </label>
+        <label className="allposts-search-label" htmlFor="searchbox">
+          Enter Keyword/Title:{' '}
+        </label>
         <input
           className="allposts-searchbox"
           type="text"
