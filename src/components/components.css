@@ -118,7 +118,6 @@ form button {
 }
 
 .allposts-keyword-row {
-  max-width: 90%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
