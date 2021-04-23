@@ -9,11 +9,11 @@ const HomeNav = (props) => {
 
   return (
     <header className="navbar-header">
-      <div className="navbar-logo-background"></div>
+      {/* <div className="navbar-logo-background"></div> */}
       <div>
         <img
           className="navbar-logo"
-          src="https://i.ibb.co/Hxn05GZ/soaring-bird.png"
+          src="https://i.ibb.co/k9Skkvm/logo-256.jpg"
           alt="logo"
         ></img>
       </div>
