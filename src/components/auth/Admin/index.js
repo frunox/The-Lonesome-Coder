@@ -217,7 +217,7 @@ function Admin() {
             </div>
 
             <div>
-              <h3>3) Add Image Link(s) Post:</h3>
+              <h3>3) Add Image Link(s) to Post:</h3>
               <button onClick={addLinksHandler}>Add Link(s) and Preview</button>
             </div>
 
