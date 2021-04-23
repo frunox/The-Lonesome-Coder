@@ -249,6 +249,13 @@ function Admin() {
                 <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
                   {postContent}
                 </ReactMarkdown>
+                <p>
+                  Send comments or suggestions for future posts to{' '}
+                  <span> </span>
+                  <a href="mailto:john@acodersquest.com">
+                    john@acodersquest.com
+                  </a>
+                </p>
               </div>
             </div>
           </div>

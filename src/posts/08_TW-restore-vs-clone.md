@@ -39,4 +39,4 @@ The best way to faithfully reproduce your code on a new computer is to use `git 
 
 Another consideration regarding case sensitivity is when working with a group, and some members use Apple or Linux computers. Those operating systems are case-sensitive. Windows 10 can now set case-sensitivity at the folder level, so code sharing will be easier. The process is described in the link above.
 
-Just one more thing to waste time on. If you have any comments or other 'Time Wasters' to share, send me an email at _acodersquest@gmail.com_ (copy the address into your email app).
+Just one more thing to waste time on. I seem to be very good at this.
