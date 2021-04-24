@@ -2,6 +2,7 @@
 postUid: postUid3
 postId: 3
 title: Building the Blog - Back End
+slug: acq-building-the-blog-back-end
 date: April 8, 2021
 author: lonesome-coder
 summary: How did I decide what back end to use

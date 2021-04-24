@@ -2,6 +2,7 @@
 postUid: postUid5
 postId: 5
 title: Bye-Bye, Bootstrap, et al.
+slug: acq-bye-bye-bootstrap
 date: April 8, 2021
 author: lonesome-coder
 summary: The simplest approach to styling seems to be good old CSS...

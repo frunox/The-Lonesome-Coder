@@ -2,6 +2,7 @@
 postUid: postUid4
 postId: 4
 title: Building the Blog - Working with Markdown
+slug: acq-building-the-blog-working-with-markdown
 date: April 13, 2021
 author: lonesome-coder
 summary: Let's look at the code to see how Markdown files are processed and rendered...

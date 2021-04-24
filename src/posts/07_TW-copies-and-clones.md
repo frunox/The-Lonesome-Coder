@@ -2,6 +2,7 @@
 postUid: postUid7
 postId: 7
 title: Time Waster - Copies and Clones, Oh, My!
+slug: acq-time-waster-copies-clones
 date: April 10, 2021
 author: lonesome-coder
 summary: Did you forget to clone your array?  I did, and spent hours trying to fix a bug that propagated in unexpected ways...

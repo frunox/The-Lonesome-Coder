@@ -2,6 +2,7 @@
 postUid: postUid9
 postId: 9
 title: Building the Blog - More on Markdown
+slug: acq-building-the-blog-more-on-markdown
 date: April 22, 2021
 author: lonesome-coder
 summary: I found a better way to process Markdown files, including inserting image links...

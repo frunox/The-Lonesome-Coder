@@ -2,6 +2,7 @@
 postUid: postUid8
 postId: 8
 title: Time Waster - Restoring vs. Cloning (Clones Again?)
+slug: acq-time-waster-restoring-cloning
 date: April 19, 2021
 author: lonesome-coder
 summary: Restoring files to a new Windows computer? Consider Windows complications, case sensitivity and cloning...
