@@ -1,6 +1,6 @@
 ---
-postUid: postUid4
-postId: 4
+postUid: postUid9
+postId: 9
 title: Building the Blog - More on Markdown
 date: April 22, 2021
 author: lonesome-coder
@@ -78,14 +78,23 @@ return (
         <div className="col-2">
           <p className="admin-column-title">Preview</p>
           <div className="post-content">
-            <h1>{mData.title}</h1>
-            {postContent && <small>Published on {mData.date}</small>}
-            {postContent && <hr />}
-            <div className="post-content">
-              <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
-                {postContent}
-              </ReactMarkdown>
-            </div>
+            {postContent && (
+              <div className="post-content">
+                <h1>{mData.title}</h1>
+                <small>Published on {mData.date}</small>
+                <hr />
+                <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
+                  {postContent}
+                </ReactMarkdown>
+                <p>
+                  Send comments or suggestions for future posts to{' '}
+                  <span> </span>
+                  <a href="mailto:john@acodersquest.com">
+                    john@acodersquest.com
+                  </a>
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -94,7 +103,9 @@ return (
 );
 ```
 
-The page is now formatted as a grid with two columns. One has all the inputs and buttons to execute the steps (`className="col-1"`), and the other is a preview pane (`"className="col-2"`).
+The page is now formatted as a grid with two columns. One has all the inputs and buttons to execute the steps (`className="col-1"`), and the other is a preview pane (`"className="col-2"`), as shown here:
+
+![acodersquest admin page]()
 
 Let's got through each step.
 
@@ -168,17 +179,23 @@ imageName: []
 
 The `imageUrl` and `imageName` fields were added as empty arrays. These will be populated later.
 
-The metadata is stored in `mData` as an object, but the content (which still includes the lines of metadata) still needs work.
+The metadata is stored in `mData` as an object, but the content, a string which still includes the lines of metadata, still needs work.
 
-Next, the `linesArray` is created from the `content` using `.split('\n')`, then the metadata is removed with `linesArray.splice(0, 12)`.
+Next, `linesArray`, an array of strings in which every element is one line of the Markdown file, is created from the `content` using `.split('\n')`, then the metadata is removed with `linesArray.splice(0, 12)`.
 
-Now, the `imageIndex` array is initialized, and we iterate through `linesArray` to find the index of each line that starts with an exclamation point. The Markdown format for image links is \_![alt text](image-url), so this is how the lines that have the links are located and those indexes are pushed to `imageIndex`.
+Now, the `imageIndex` array is initialized. I iterate through `linesArray` to find the index of each line that starts with an exclamation point. The Markdown format for image links is `![alt text](image-url)`, so this is how the lines that have the links are located and those indexes are pushed to `imageIndex`. What I write in the Markdown file is `![alt text]()`. The image URL is inserted later.
 
 I set variables to show which image is to be selected (such as _"Select Image 1 of 2"_), and also save `imageIndex`, and finally `linesArray` is converted back into a string and stored in `postContent`, which now renders in the preview pane, minus the images.
 
+Now the page looks like:
+
+![acodersquest admin first preview]()
+
+The file, minus the images, is previewed. The Markdown image element just displays the _alt text_.
+
 ## Selecting the Images and Storing the URLs
 
-The images are selected and stored first because this is when it's easiest to the URLs. This is a due to how Cloud Storage works.
+The images are selected and stored first because this is when it's easiest to get the URLs. This is a due to how Cloud Storage works.
 
 The image file picker runs `selectedImageHandler`:
 
@@ -220,9 +237,15 @@ const imageStorageHandler = async (event) => {
 };
 ```
 
+Cloud Storage stores files in 'buckets', so `bucketName` identifies the bucket I'm using. `selectedImage` is the image file. `urls` is an array of image URLs, if any, and `name` is an array of any image file names. The name of the image file is pushed to `names` and set to a state variable `imageName`.
+
+Now comes the setup to store the image file. Firebase wants a `ref`, which which service is being used. Here, `add.storage()` refers to Cloud Storage, with the bucket and file names provided as arguments. THen, the `.put()` method is used to store the file. It overwrites an existing file of the same name so there are no duplicates.
+
+Next, the `.getDownloadURL()` method is used to get the URL, which is saved in `imageFileUrl` and pushed to the `urls` array and saved into another state variable. Then the metadata stored in state (`mData`) is updated with the arrays of image URLs and file names.
+
 ## Add the Image URLs to the Post
 
-The _Select Image File {imageCount} of {numberOfImages} to Add:_ is used to pick the first image file for the post. It executes `addLinksHandler()`:
+The _Add Links and Preview_ button executes `addLinksHandler()`:
 
 ```js
 const addLinksHandler = () => {
@@ -236,6 +259,47 @@ const addLinksHandler = () => {
 };
 ```
 
-Here, a new `linesArray`, not including the metadata, is `.split('\n')` from `postContent`. The array of lines of text is iterated for each image in the post, and a new line is
+Here, a new `linesArray`, not including the metadata, is `.split('\n')` from `postContent`. The array of lines of text is iterated to find the line for each image in the post using it's index, and a `newline` is created using `.replace()`, inserting the appropriate URL.
 
-Please contact me at <a href="mailto:john@acodersquest.com">john@acodersquest.com</a> with any comments.
+When this is done, the preview updates to include any images:
+
+![preview-with-image]()
+
+## Save the Post to Firestore
+
+The _Store/Update Post_ button executes `postStoreHandler()`:
+
+```js
+const postStoreHandler = () => {
+  setMessage('');
+  // console.log('postStoreHandler mData', mData);
+  const postObject = mData;
+  postObject.content = postContent;
+  const storageRef = db.collection('metadata');
+  // console.log('storageRef', storageRef)
+  storageRef
+    .doc(postObject.postUid)
+    .set(postObject)
+    .catch((err) => {
+      console.log(err);
+      setMessage('Firebase save post error. ' + err);
+    });
+  setMessage('New post saved/updated.');
+  setMData('');
+  setMarkdownFile('');
+  setUrlsArray([]);
+  setImageIndices([]);
+  setImageCount(0);
+  setNumberOfImages(0);
+};
+```
+
+A `postObject` is created to hold the current metadata, and then the content, including the image URLs, is appended. A `storageRef` with the Firestore collection name is set, and the `.doc()` method with my custom document ID is run, then the `.set()` method stores the entire post object to that ID. After that, many of the state variable are re-initialized to be ready to process another post.
+
+## Summary
+
+Re-factoring the process of turning Markdown files into posts seemed daunting at first, but I'm happy how it turned. I'm sure the code can still be improved - maybe I'll try that later.
+
+Now I can add images to the posts without copying and pasting the URLs, which is a nice improvement.
+
+You can see a another section on the lower left of the Admin page called _Update Post w/Text Revisions_. This will update an existing post if there are just revisions to the text, without going through the whole process described here. I'll explain it in, well, another post!

@@ -241,22 +241,24 @@ function Admin() {
 
           <div className="col-2">
             <p className="admin-column-title">Preview</p>
-            <div className="post-content">
-              <h1>{mData.title}</h1>
-              {postContent && <small>Published on {mData.date}</small>}
-              {postContent && <hr />}
-              <div className="post-content">
-                <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
-                  {postContent}
-                </ReactMarkdown>
-                <p>
-                  Send comments or suggestions for future posts to{' '}
-                  <span> </span>
-                  <a href="mailto:john@acodersquest.com">
-                    john@acodersquest.com
-                  </a>
-                </p>
-              </div>
+            <div>
+              {postContent && (
+                <div className="admin-post-content">
+                  <h1>{mData.title}</h1>
+                  <small>Published on {mData.date}</small>
+                  <hr />
+                  <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
+                    {postContent}
+                  </ReactMarkdown>
+                  <p>
+                    Send comments or suggestions for future posts to{' '}
+                    <span> </span>
+                    <a href="mailto:john@acodersquest.com">
+                      john@acodersquest.com
+                    </a>
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
