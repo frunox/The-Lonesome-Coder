@@ -27,11 +27,11 @@ function App() {
       }));
       posts.sort((a, b) => b.postId - a.postId);
       savePosts(posts);
-      // console.log('App: in useEffect, posts.length', posts.length)
+      console.log('App: in useEffect, posts.length', posts.length);
     });
   }, []);
 
-  // console.log('APP')
+  console.log('APP');
   return (
     <React.Fragment>
       <Router>
@@ -47,6 +47,7 @@ function App() {
           <Route path="/all-posts" component={AllPostsPage} />
           <Route path="/post/:id" render={(props) => <Post {...props} />} />
           <Route path="/404" component={NotFoundPage} />
+          <Route path="*" component={Home} />
         </Switch>
       </Router>
     </React.Fragment>

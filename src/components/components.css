@@ -11,7 +11,7 @@
 }
 
 .content h2 {
-  margin-top: 12px;
+  /* margin-top: 12px; */
   margin-bottom: 6px;
   font-weight: 400;
 }
@@ -73,7 +73,8 @@ form button {
 }
 
 .post-title {
-  font-size: 1.2em;
+  font-size: 1.1rem;
+  margin-top: 0;
   font-weight: 500;
 }
 
@@ -95,6 +96,7 @@ form button {
 .post-link {
   color: black;
   text-decoration: none;
+  margin-top: 0;
 }
 
 .content hr {
@@ -172,8 +174,8 @@ form button {
   }
 
   .post-title {
-    font-size: 1.875em;
-    font-weight: lighter;
+    font-size: 1.5em;
+    font-weight: 500;
   }
 
   .post-card-fixed blockquote {
