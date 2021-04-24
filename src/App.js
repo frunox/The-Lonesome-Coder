@@ -47,6 +47,7 @@ function App() {
           <Route path="/all-posts" component={AllPostsPage} />
           <Route path="/post/:id" render={(props) => <Post {...props} />} />
           <Route path="/404" component={NotFoundPage} />
+          <Route path="*" component={Home} />
         </Switch>
       </Router>
     </React.Fragment>
