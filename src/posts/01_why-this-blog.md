@@ -2,6 +2,7 @@
 postUid: postUid1
 postId: 1
 title: What This Blog is About
+slug: acq-what-this-blog-is-about
 date: April 5, 2021
 author: lonesome-coder
 summary: What is this blog about?...

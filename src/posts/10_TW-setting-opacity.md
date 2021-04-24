@@ -2,6 +2,7 @@
 postUid: postUid10
 postId: 10
 title: Time Waster - Setting Opacity
+slug: acq-time-waster-setting-opacity
 date: April 23, 2021
 author: john@acodersquest.com
 summary: Everyone knows how to set opacity, right? Leave it to me to find a new, problematic way...

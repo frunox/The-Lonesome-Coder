@@ -23,6 +23,7 @@ function Admin() {
 
   const selectedFileHandler = (event) => {
     setMessage('');
+    setPostContent('');
     console.log('selectedFileHandler: ', event.target.files[0].name);
     let rawFile = event.target.files[0];
     let reader = new FileReader();
@@ -196,7 +197,7 @@ function Admin() {
     <>
       <div className="admin-content">
         <h2 className="admin-title">Admin Page</h2>
-        <hr></hr>
+        {/* <hr></hr> */}
         <div className="admin-grid">
           <div className="col-1">
             <p className="admin-column-title">Full Post Processing Sequence</p>
@@ -246,7 +247,7 @@ function Admin() {
                 <div className="admin-post-content">
                   <h1>{mData.title}</h1>
                   <small>Published on {mData.date}</small>
-                  <hr />
+                  {/* <hr /> */}
                   <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
                     {postContent}
                   </ReactMarkdown>

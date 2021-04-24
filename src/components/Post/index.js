@@ -12,21 +12,23 @@ function Post(props) {
   console.log('Post: postArray', postArray);
   // const postIndex = postArray.length
 
-  let id = parseInt(props.match.params.id);
-  if (Object.is(NaN, id)) {
-    console.log('Post redirect');
-    return <Redirect to="/404" />;
-  }
+  // let slug = parseInt(props.match.params.id);
+  let slug = props.match.params.id;
+  // console.log('Post slug', slug, typeof slug);
+
+  // if (Object.is(NaN, id)) {
+  //   console.log('Post redirect');
+  //   return <Redirect to="/404" />;
+  // }
 
   if (postArray.length === 0) {
     return <Redirect to="/all-posts" />;
   }
 
   function findPostId(element) {
-    return element.postId === id;
+    return element.slug === slug;
   }
-  id = postArray.findIndex(findPostId);
-
+  let id = postArray.findIndex(findPostId);
   console.log('POST id after sort: ', id);
   // const maxValidId = postArray[0].postId;
   // console.log('maxValidId', maxValidId);
@@ -40,7 +42,7 @@ function Post(props) {
         <h1>{postArray[id].title}</h1>
         {/* <h3>Author: {postArray[id].author}</h3> */}
         <small>Published on {postArray[id].date}</small>
-        <hr />
+        {/* <hr /> */}
         <ReactMarkdown skipHtml={true} linkTarget={'_blank_'}>
           {postArray[id].content}
         </ReactMarkdown>

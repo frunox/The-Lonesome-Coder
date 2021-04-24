@@ -2,6 +2,7 @@
 postUid: postUid6
 postId: 6
 title: Commit to Commit
+slug: acq-commit-to-commit
 date: April 12, 2021
 author: lonesome-coder
 summary: Ever get on a roll, when an error arises, and you find yourself undoing working code. You need to commit to commit...

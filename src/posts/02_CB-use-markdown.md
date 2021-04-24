@@ -2,6 +2,7 @@
 postUid: postUid2
 postId: 2
 title: Markdown! (Not a Sales Pitch)
+slug: acq-markdown-not-a-sales-pitch
 date: April 8, 2021
 author: lonesome-coder
 summary: Markdown is the simplest format to use to add content to a website. There are a couple of tools that are needed to use Markdown files in a React project...
