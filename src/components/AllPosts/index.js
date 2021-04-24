@@ -14,7 +14,7 @@ function AllPosts() {
   useEffect(() => {
     setRenderArray(postArray);
   }, [postArray]);
-  // console.log('AllPosts: postArray', postArray);
+  console.log('AllPosts: postArray', postArray);
 
   const handleChange = (e) => {
     e.preventDefault();

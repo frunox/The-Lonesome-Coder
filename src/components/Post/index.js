@@ -11,6 +11,11 @@ function Post(props) {
   const postArray = usePosts();
   console.log('Post: postArray', postArray);
   // const postIndex = postArray.length
+
+  if (postArray.length === 0) {
+    return <Redirect to="/all-posts" />;
+  }
+
   let id = parseInt(props.match.params.id);
 
   function findPostId(element) {
@@ -19,8 +24,8 @@ function Post(props) {
   id = postArray.findIndex(findPostId);
 
   console.log('POST id after sort: ', id);
-  const maxValidId = postArray[0].postId;
-  console.log('maxValidId', maxValidId);
+  // const maxValidId = postArray[0].postId;
+  // console.log('maxValidId', maxValidId);
 
   if (Object.is(NaN, id)) {
     return <Redirect to="/404" />;
