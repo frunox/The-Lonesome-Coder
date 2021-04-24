@@ -26,7 +26,6 @@
 
 .post-content p {
   margin-bottom: 8px;
-  font-size: 1.2rem;
 }
 
 .post-content img {
@@ -74,5 +73,9 @@
     text-align: left;
     margin-bottom: 4px;
     text-decoration: none;
+  }
+
+  .post-content p {
+    font-size: 1.2rem;
   }
 }
