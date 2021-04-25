@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 
@@ -8,22 +8,30 @@ import HomeNav from '../HomeNav';
 import '../postContent.css';
 
 function Post(props) {
+  // const [isLoading, setIsLoading] = useState(true);
   const postArray = usePosts();
   console.log('Post: postArray', postArray);
   // const postIndex = postArray.length
 
   // let slug = parseInt(props.match.params.id);
   let slug = props.match.params.id;
-  // console.log('Post slug', slug, typeof slug);
+  console.log('Post slug', slug, typeof slug);
 
   // if (Object.is(NaN, id)) {
   //   console.log('Post redirect');
   //   return <Redirect to="/404" />;
   // }
 
-  if (postArray.length === 0) {
-    return <Redirect to="/all-posts" />;
-  }
+  // let arrayLength = [];
+  // while (postArray.length === 0) {
+  //   let arrayLength = postArray.length;
+  //   console.log('In while', arrayLength);
+  //   if (arrayLength) {
+  // setIsLoading(false);
+  //     break;
+  //   }
+  // }
+  // return <Redirect to="/all-posts" />;
 
   function findPostId(element) {
     return element.slug === slug;
@@ -38,6 +46,7 @@ function Post(props) {
   return (
     <React.Fragment>
       <HomeNav />
+      {/* {isLoading && 'Loading...'} */}(
       <div className="post-content">
         <h1>{postArray[id].title}</h1>
         {/* <h3>Author: {postArray[id].author}</h3> */}
@@ -51,6 +60,7 @@ function Post(props) {
           <a href="mailto:john@acodersquest.com">john@acodersquest.com</a>
         </p>
       </div>
+      )
     </React.Fragment>
   );
 }
