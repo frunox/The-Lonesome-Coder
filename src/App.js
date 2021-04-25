@@ -34,12 +34,11 @@ function App() {
       setIsLoading(false);
     };
     getPosts();
-  }, []);
+  }, [isLoading]);
 
   console.log('APP');
   return (
     <React.Fragment>
-      {isLoading && 'Loading...'}
       {!isLoading && (
         <Router>
           <Switch>
