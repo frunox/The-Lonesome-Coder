@@ -17,43 +17,47 @@ import NotFoundPage from './pages/NotFoundPage';
 import './App.css';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
   const savePosts = usePostsUpdate();
 
   useEffect(() => {
-    const postsRef = firestore.collection('metadata');
-    postsRef.get().then((snapshot) => {
-      const posts = snapshot.docs.map((doc) => ({
-        ...doc.data(),
-      }));
-      posts.sort((a, b) => b.postId - a.postId);
-      savePosts(posts);
-      console.log('App: in useEffect, posts.length', posts.length);
-    });
-    setIsLoading(false)
+    const getPosts = async () => {
+      const postsRef = firestore.collection('metadata');
+      await postsRef.get().then((snapshot) => {
+        const posts = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+        }));
+        posts.sort((a, b) => b.postId - a.postId);
+        savePosts(posts);
+        console.log('App: in useEffect, posts.length', posts.length);
+      });
+      setIsLoading(false);
+    };
+    getPosts();
   }, []);
 
   console.log('APP');
   return (
-    {isLoading && 'Loading...'}
-    {!isLoading}
     <React.Fragment>
-      <Router>
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about" component={AboutPage} />
-          <PrivateRoute path="/profile" component={ProfilePage} />
-          <PrivateRoute path="/update-profile" component={UpdateProfile} />
-          <PrivateRoute path="/admin" component={AdminPage} />
-          <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/signup" component={SignupPage} />
-          <Route path="/forgot-password" component={ForgotPassword} />
-          <Route path="/all-posts" component={AllPostsPage} />
-          <Route path="/post/:id" render={(props) => <Post {...props} />} />
-          <Route path="/404" component={NotFoundPage} />
-          <Route path="*" component={Home} />
-        </Switch>
-      </Router>
+      {isLoading && 'Loading...'}
+      {!isLoading && (
+        <Router>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/about" component={AboutPage} />
+            <PrivateRoute path="/profile" component={ProfilePage} />
+            <PrivateRoute path="/update-profile" component={UpdateProfile} />
+            <PrivateRoute path="/admin" component={AdminPage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/signup" component={SignupPage} />
+            <Route path="/forgot-password" component={ForgotPassword} />
+            <Route path="/all-posts" component={AllPostsPage} />
+            <Route path="/post/:id" render={(props) => <Post {...props} />} />
+            <Route path="/404" component={NotFoundPage} />
+            <Route path="*" component={Home} />
+          </Switch>
+        </Router>
+      )}
     </React.Fragment>
   );
 }
