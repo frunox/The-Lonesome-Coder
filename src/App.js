@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { firestore } from './firebase';
 import { usePostsUpdate } from './contexts/PostContext';
@@ -17,6 +17,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import './App.css';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true)
   const savePosts = usePostsUpdate();
 
   useEffect(() => {
@@ -29,10 +30,13 @@ function App() {
       savePosts(posts);
       console.log('App: in useEffect, posts.length', posts.length);
     });
+    setIsLoading(false)
   }, []);
 
   console.log('APP');
   return (
+    {isLoading && Loading}
+    {!isLoading}
     <React.Fragment>
       <Router>
         <Switch>
