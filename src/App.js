@@ -35,7 +35,7 @@ function App() {
 
   console.log('APP');
   return (
-    {isLoading && Loading}
+    {isLoading && 'Loading...'}
     {!isLoading}
     <React.Fragment>
       <Router>
