@@ -105,10 +105,10 @@ function AllPosts() {
           className="allposts-keyword"
           type="text"
           name="searchbox"
-          value="javascript"
+          value="markdown"
           onClick={handleChange}
         >
-          JavaScript
+          Markdown
         </button>
         <button
           className="allposts-keyword"
