@@ -8,14 +8,12 @@ import '../postContent.css';
 
 function Post(props) {
   const postArray = usePosts();
-  console.log('Post: postArray', postArray);
   let slug = props.match.params.id;
 
   function findPostId(element) {
     return element.slug === slug;
   }
   let id = postArray.findIndex(findPostId);
-  console.log('POST id after sort: ', id);
 
   return (
     <React.Fragment>
