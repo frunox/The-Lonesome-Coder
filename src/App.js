@@ -21,14 +21,12 @@ function App() {
         }));
         posts.sort((a, b) => b.postId - a.postId);
         savePosts(posts);
-        console.log('App: in useEffect, posts.length', posts.length);
       });
       setIsLoading(false);
     };
     getPosts();
   }, [isLoading]);
 
-  console.log('APP');
   return (
     <React.Fragment>
       {!isLoading && (

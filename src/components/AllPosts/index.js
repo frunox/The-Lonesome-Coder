@@ -5,7 +5,6 @@ import { usePosts } from '../../contexts/PostContext';
 import '../components.css';
 
 function AllPosts() {
-  const [state, setState] = useState();
   const [renderArray, setRenderArray] = useState([]);
   let postArray = usePosts();
 
@@ -14,24 +13,18 @@ function AllPosts() {
   useEffect(() => {
     setRenderArray(postArray);
   }, [postArray]);
-  console.log('AllPosts: postArray', postArray);
 
   const handleChange = (e) => {
     e.preventDefault();
     // const { name, value } = e.target;
-    // console.log('handleChange', name, value);
     localStorage.setItem('searchString', e.target.value);
-    setState({ searchbox: e.target.value });
   };
 
   const searchHandler = (e) => {
     e.preventDefault();
     searchArray = [];
-    console.log('in searchHandler', state);
     let searchString = localStorage.getItem('searchString');
-    console.log('searchString', searchString);
     for (let i = 0; i < postArray.length; i++) {
-      // console.log('in loop')
       if (
         postArray[i].keywords
           .toLowerCase()
@@ -39,13 +32,8 @@ function AllPosts() {
         postArray[i].title.toLowerCase().includes(searchString.toLowerCase())
       ) {
         searchArray.push(postArray[i]);
-        console.log(
-          postArray[i].keywords.toLowerCase(),
-          searchString.toLowerCase()
-        );
       }
     }
-    console.log('AllPosts searchArray: ', searchArray);
     setRenderArray(searchArray);
   };
 
