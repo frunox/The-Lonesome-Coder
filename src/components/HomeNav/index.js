@@ -29,7 +29,7 @@ const HomeNav = (props) => {
             <Link to="/about">About</Link>
           </li>
           <li>
-            <Link to="/all-posts">Posts</Link>
+            <Link to="/all-posts">All Posts</Link>
           </li>
         </ul>
       </nav>
