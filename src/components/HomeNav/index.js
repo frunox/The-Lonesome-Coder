@@ -1,14 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 import './HomeNav.css';
 
 const HomeNav = (props) => {
+  const { currentUser } = useAuth();
+  const admin = process.env.REACT_APP_ADMIN_EMAIL;
+
   return (
     <header className="navbar-header">
+      {/* <div className="navbar-logo-background"></div> */}
       <div>
         <img
           className="navbar-logo"
-          src="https://i.ibb.co/r04HX4G/logo-800x800.png"
+          src="https://i.ibb.co/VSMQDGW/logo2-800x800.png"
           alt="logo"
         ></img>
       </div>
@@ -31,6 +36,26 @@ const HomeNav = (props) => {
           <li>
             <Link to="/all-posts">All Posts</Link>
           </li>
+          {currentUser && currentUser.email === admin && (
+            <li>
+              <Link to="/admin">Admin</Link>
+            </li>
+          )}
+          {/* {currentUser && (
+            <li>
+              <Link to="/profile">Profile</Link>
+            </li>
+          )} */}
+          {!currentUser && (
+            <>
+              <li>
+                <Link to="/login">Log In</Link>
+              </li>
+              {/* <li>
+                <Link to="/signup">Sign Up</Link>
+              </li> */}
+            </>
+          )}
         </ul>
       </nav>
       <label htmlFor="navbar-toggle" className="navbar-toggle-label">
