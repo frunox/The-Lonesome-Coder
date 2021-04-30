@@ -64,7 +64,9 @@ form button {
   text-align: left;
   margin-bottom: 1em;
   padding: 8px;
-  border: 1px solid rgba(172, 162, 206, 0.7);
+  background-color: white;
+  /* border: 1px solid rgba(172, 162, 206, 0.7); */
+  border-radius: 15px;
 }
 
 .post-card:hover {
