@@ -10,10 +10,7 @@ function Post(props) {
   const postArray = usePosts();
   let slug = props.match.params.id;
 
-  function findPostId(element) {
-    return element.slug === slug;
-  }
-  let id = postArray.findIndex(findPostId);
+  let id = postArray.findIndex((el) => el.slug === slug);
 
   return (
     <React.Fragment>
