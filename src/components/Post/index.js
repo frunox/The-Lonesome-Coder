@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import Footer from '../Footer';
 
 import { usePosts } from '../../contexts/PostContext';
 
@@ -7,10 +8,33 @@ import HomeNav from '../HomeNav';
 import '../postContent.css';
 
 function Post(props) {
+  // const [isLoading, setIsLoading] = useState(true);
   const postArray = usePosts();
+  console.log('Post: postArray', postArray);
+  // const postIndex = postArray.length
+
+  // let slug = parseInt(props.match.params.id);
   let slug = props.match.params.id;
+  // console.log('Post slug', slug, typeof slug);
+
+  // if (Object.is(NaN, id)) {
+  //   console.log('Post redirect');
+  //   return <Redirect to="/404" />;
+  // }
+
+  // let arrayLength = [];
+  // while (postArray.length === 0) {
+  //   let arrayLength = postArray.length;
+  //   console.log('In while', arrayLength);
+  //   if (arrayLength) {
+  // setIsLoading(false);
+  //     break;
+  //   }
+  // }
+  // return <Redirect to="/all-posts" />;
 
   let id = postArray.findIndex((el) => el.slug === slug);
+  console.log('POST id after sort: ', id);
 
   return (
     <React.Fragment>
@@ -29,6 +53,7 @@ function Post(props) {
           <a href="mailto:john@acodersquest.com">john@acodersquest.com.</a>
         </p>
       </div>
+      <Footer />
     </React.Fragment>
   );
 }

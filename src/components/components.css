@@ -3,7 +3,7 @@
   top: 65px;
   width: 96%;
   margin: auto;
-  margin-bottom: 130px;
+  margin-bottom: 85px;
 }
 
 .content h1 {
@@ -19,7 +19,7 @@
 .content p {
   margin-bottom: 8px;
   font-size: 1rem;
-line-height: 1.4rem;
+  line-height: 1.4rem;
 }
 
 form button {
@@ -153,8 +153,6 @@ form button {
   color: white;
   height: 55px;
   border-top: 3px solid blue;
-  position: fixed;
-  bottom: 0;
   width: 100%;
   z-index: 99;
   display: flex;

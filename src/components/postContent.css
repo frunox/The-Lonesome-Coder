@@ -5,7 +5,9 @@
   top: 62px;
   width: 96%;
   margin: auto;
-  padding: 0 1rem;
+  margin-bottom: 85px;
+  padding: 0 1rem 1rem 1rem;
+  border-radius: 15px;
 }
 
 .post-content h1 {
@@ -33,7 +35,7 @@
 
 .post-content p {
   margin-top: 8px;
-line-height: 1.4rem;
+  line-height: 1.4rem;
 }
 
 .post-content img {
@@ -74,7 +76,6 @@ line-height: 1.4rem;
 @media screen and (min-width: 800px) {
   .post-content {
     width: 70%;
-    margin: auto;
   }
 
   .post-content h1 {
