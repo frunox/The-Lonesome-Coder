@@ -41,21 +41,6 @@ const HomeNav = (props) => {
               <Link to="/admin">Admin</Link>
             </li>
           )}
-          {/* {currentUser && (
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-          )} */}
-          {!currentUser && (
-            <>
-              <li>
-                <Link to="/login">Log In</Link>
-              </li>
-              {/* <li>
-                <Link to="/signup">Sign Up</Link>
-              </li> */}
-            </>
-          )}
         </ul>
       </nav>
       <label htmlFor="navbar-toggle" className="navbar-toggle-label">
