@@ -1,12 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
 import './HomeNav.css';
 
 const HomeNav = (props) => {
-  const { currentUser } = useAuth();
-  const admin = process.env.REACT_APP_ADMIN_EMAIL;
-
   return (
     <header className="navbar-header">
       {/* <div className="navbar-logo-background"></div> */}

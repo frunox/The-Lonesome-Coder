@@ -1,3 +1,15 @@
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  min-height: 100%;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
 .post-content {
   background-color: white;
   position: relative;
