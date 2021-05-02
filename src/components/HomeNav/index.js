@@ -36,11 +36,6 @@ const HomeNav = (props) => {
           <li>
             <Link to="/all-posts">All Posts</Link>
           </li>
-          {currentUser && currentUser.email === admin && (
-            <li>
-              <Link to="/admin">Admin</Link>
-            </li>
-          )}
         </ul>
       </nav>
       <label htmlFor="navbar-toggle" className="navbar-toggle-label">
